@@ -5,12 +5,12 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'happy-dom', // jsdomの代わりにhappy-domを使用
+    environment: 'happy-dom',
     globals: true,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './'),
+      '@': path.resolve(process.cwd(), './'),
     },
   },
 });
