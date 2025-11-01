@@ -1,3 +1,7 @@
+export const formatMessage = (message: string) => {
+  return `Hello: ${message}`;
+};
+
 const Page = async () => {
   const fetchData = async () => {
     const apiUrl = process.env.API_URL!;
@@ -22,7 +26,7 @@ const Page = async () => {
 
   return (
     <div>
-      {data.name}
+      {formatMessage(data.name)}
     </div>
   );
 }
