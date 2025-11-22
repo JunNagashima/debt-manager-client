@@ -1,0 +1,7 @@
+@use "@/styles/_variables" as *;
+
+.box {
+  padding: 20px;
+  background-color: $black;
+  color: $white;
+}

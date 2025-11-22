@@ -1,3 +1,5 @@
+import styles from './page.module.scss';
+
 export const formatMessage = (message: string) => {
   return `Hello: ${message}`;
 };
@@ -25,7 +27,7 @@ const Page = async () => {
   const data = await fetchData();
 
   return (
-    <div>
+    <div className={styles.box}>
       {formatMessage(data.name)}
     </div>
   );
