@@ -1,3 +1,4 @@
+
 import styles from './page.module.scss';
 
 export const formatMessage = (message: string) => {

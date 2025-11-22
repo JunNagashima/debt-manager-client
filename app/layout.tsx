@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from '@/app/_components/Navbar/Navbar';
+import Header from "@/app/_components/Header/Header";
+import styles from './layout.module.scss';
 
 // TODO: meta情報を適切に設定する
 export const metadata: Metadata = {
@@ -15,7 +18,13 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        {children}
+        <div className={styles.container}>
+          <Navbar />
+          <div className={styles.mainContent}>
+            <Header />
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

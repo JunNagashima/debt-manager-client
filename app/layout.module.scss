@@ -1,0 +1,9 @@
+@use "@/styles/_variables" as *;
+
+.container {
+  display: flex;
+}
+
+.mainContent {
+  flex: 1;
+}
