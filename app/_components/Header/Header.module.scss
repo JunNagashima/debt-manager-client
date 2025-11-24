@@ -2,11 +2,11 @@
 
 .header {
   background: linear-gradient(135deg, #ffffff 0%, $bg-accent 100%);
-    padding: $spacing-lg;
-    border-bottom: 1px solid $border-light;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: $shadow-md;
-    font-size: 24px;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $border-light;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow-md;
+  font-size: 24px;
 }
