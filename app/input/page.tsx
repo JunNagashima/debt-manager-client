@@ -1,7 +1,10 @@
+import Page from './_components/Page/page';
+import styles from './page.module.scss';
+
 const page = () => {
   return (
-    <div>
-      Enter
+    <div className={styles.container}>
+      <Page />
     </div>
   );
 }

@@ -47,7 +47,7 @@ const BaseButton = ({ type, size, clickEvent, children }: Props) => {
     .join(' ');
   return (
     <div>
-      <button className={classes} onClick={onClick}>
+      <button type='button' className={classes} onClick={onClick}>
         {children}
       </button>
     </div>
