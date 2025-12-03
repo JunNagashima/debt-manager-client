@@ -1,0 +1,108 @@
+@use "@/styles/_variables" as *;
+
+.card {
+  background: linear-gradient(135deg, #ffffff 0%, $bg-accent 100%);
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-light;
+  transition: all 0.3s ease;
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+
+    .userName {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .badge {
+      padding: 5px 14px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .cardBody {
+    margin-bottom: $spacing-md;
+
+    .balanceAmountGroup {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-md;
+      margin-bottom: $spacing-md;
+      padding-bottom: $spacing-md;
+      border-bottom: 1px solid $border-color;
+
+      .balanceItem {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+
+        .balanceAmount {
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .balanceNet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .balanceAmount {
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+
+    .balanceLabel {
+      font-size: 12px;
+      color: $text-secondary;
+    }
+  }
+
+  .cardFooter {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: flex-end;
+  }
+}
+
+.positive {
+  color: $success-color;
+}
+
+.negative {
+  color: $danger-color;
+}
+
+.primary {
+  color: $text-primary;
+}
+
+.neutral {
+  color: $text-secondary;
+}
+
+.bgPositive {
+  background-color: $success-light;
+  color: #6b5d4f;
+}
+
+.bgNegative {
+  background-color: $danger-light;
+  color: #8b5a4f;
+}
+
+.bgNeutral {
+  background-color: $bg-tertiary;
+  color: $text-secondary;
+}

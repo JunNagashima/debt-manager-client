@@ -1,0 +1,42 @@
+  @use "@/styles/_variables" as *;
+
+.btn {
+  padding: 11px 24px;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-hover 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(160, 130, 109, 0.2);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(160, 130, 109, 0.3);
+}
+
+.btnSecondary {
+  background-color: $bg-tertiary;
+  color: $text-primary;
+  border: 1px solid $border-color;
+}
+
+.btnSecondary:hover {
+  background-color: $border-color;
+  border-color: $primary-light;
+}
+
+.btnSmall {
+  padding: 7px 16px;
+  font-size: 13px;
+}
