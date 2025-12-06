@@ -1,0 +1,71 @@
+@use "@/styles/variables" as *;
+
+.friendCard {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  background: linear-gradient(135deg, #ffffff 0%, $bg-accent 100%);
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid $border-light;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-3px);
+    border-color: $primary-light;
+  }
+}
+
+.friendAvatar {
+  font-size: 48px;
+}
+
+.friendInfo {
+  flex: 1;
+}
+
+.friendName {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.friendId {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.friendBalance {
+  display: flex;
+  gap: $spacing-sm;
+  font-size: 14px;
+}
+
+.balanceLabel {
+  color: $text-secondary;
+}
+
+.balanceValue {
+  font-weight: 600;
+
+  &.advance {
+    color: $success-color;
+  }
+
+  &.borrowed {
+    color: $danger-color;
+  }
+
+  &.neutral {
+    color: $text-secondary;
+  }
+}
+
+.friendArrow {
+  font-size: 24px;
+  color: $text-secondary;
+}

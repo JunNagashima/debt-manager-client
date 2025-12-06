@@ -1,0 +1,75 @@
+@use "@/styles/variables" as *;
+
+.requestList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.requestCard {
+  background: linear-gradient(135deg, #ffffff 0%, $bg-accent 100%);
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-light;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+.requestHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.friendAvatar {
+  font-size: 48px;
+}
+
+.requestInfo {
+  flex: 1;
+}
+
+.requestName {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.requestId {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: 2px;
+}
+
+.requestDate {
+  font-size: 12px;
+  color: $text-light;
+}
+
+.requestActions {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: flex-end;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl;
+}
+
+.emptyMessage {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.btnGroup {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: flex-end;
+}

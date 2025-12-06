@@ -1,11 +1,12 @@
+import FriendsContent from './components/FriendsContent/FriendsContent';
 import styles from './page.module.scss';
 
-const page = () => {
+const FriendsPage = () => {
   return (
     <div className={styles.container}>
-      Enter
+      <FriendsContent />
     </div>
   );
-}
+};
 
-export default page;
+export default FriendsPage;

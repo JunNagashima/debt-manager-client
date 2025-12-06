@@ -1,0 +1,36 @@
+@use "@/styles/variables" as *;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+.friendRequestForm {
+  background: linear-gradient(135deg, #ffffff 0%, $bg-accent 100%);
+  padding: $spacing-xl;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-light;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: $spacing-md;
+  }
+
+  .pageHeader {
+    padding: $spacing-md;
+  }
+
+  .pageTitle {
+    font-size: 20px;
+  }
+}
+

@@ -1,6 +1,14 @@
-@use "@/styles/_variables" as *;
+@use "@/styles/variables" as *;
 
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: $spacing-lg;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-md;
+  }
 }
 
