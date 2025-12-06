@@ -1,11 +1,14 @@
+import AccountInfoSection from './components/AccountInfoSection/AccountInfoSection';
+import OtherSettingsSection from './components/OtherSettingsSection/OtherSettingsSection';
 import styles from './page.module.scss';
 
-const page = () => {
+const SettingsPage = () => {
   return (
     <div className={styles.container}>
-      Enter
+      <AccountInfoSection />
+      <OtherSettingsSection />
     </div>
   );
-}
+};
 
-export default page;
+export default SettingsPage;
