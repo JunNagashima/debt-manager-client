@@ -1,0 +1,17 @@
+@use "@/styles/_variables" as *;
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl;
+}
+
+.emptyMessage {
+  font-size: 14px;
+  color: $text-secondary;
+}

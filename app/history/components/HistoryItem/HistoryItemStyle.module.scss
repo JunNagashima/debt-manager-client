@@ -1,0 +1,149 @@
+@use "@/styles/_variables" as *;
+
+.historyItem {
+  background: linear-gradient(135deg, #ffffff 0%, $bg-accent 100%);
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  border-left: 4px solid $border-color;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateX(4px);
+  }
+
+  &.advance {
+    border-left-color: $success-color;
+  }
+
+  &.repayment {
+    border-left-color: $accent-color;
+  }
+
+  &.adjustment {
+    border-left-color: $text-light;
+    background: linear-gradient(135deg, $bg-secondary 0%, $bg-tertiary 100%);
+    opacity: 0.85;
+  }
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+}
+
+.historyMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.historyDate {
+  font-size: 13px;
+  color: $text-secondary;
+  font-weight: 500;
+}
+
+.historyType {
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  &.advance {
+    background-color: $success-light;
+    color: #6b5d4f;
+  }
+
+  &.repayment {
+    background-color: #e8ddd0;
+    color: $text-accent;
+  }
+
+  &.adjustment {
+    background-color: $bg-tertiary;
+    color: $text-secondary;
+  }
+}
+
+.historyAmount {
+  font-size: 18px;
+  font-weight: 700;
+  color: $text-primary;
+
+  &.positive {
+    color: $success-color;
+  }
+}
+
+.historyBody {
+  padding: $spacing-sm 0;
+}
+
+.historyUser {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+}
+
+.userAvatarSmall {
+  font-size: 20px;
+}
+
+.userName {
+  font-weight: 500;
+}
+
+.historyNote {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-left: 28px;
+}
+
+.historyFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $border-color;
+}
+
+.historyTimestamp {
+  font-size: 11px;
+  color: $text-light;
+}
+
+.historyActions {
+  display: flex;
+  gap: $spacing-xs;
+}
+
+.btnIcon {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $bg-tertiary;
+  }
+
+  &.danger:hover {
+    background-color: #fee2e2;
+  }
+}
+
+.historyReadonly {
+  font-size: 11px;
+  color: $text-light;
+  font-style: italic;
+}
