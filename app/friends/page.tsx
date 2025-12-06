@@ -1,6 +1,8 @@
+import styles from './page.module.scss';
+
 const page = () => {
   return (
-    <div>
+    <div className={styles.container}>
       Enter
     </div>
   );
