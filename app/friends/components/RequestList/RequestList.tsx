@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import styles from './RequestListStyle.module.scss';
 import BaseButton from "@/app/_components/Button/BaseButton";
+import { AiOutlineUser } from "react-icons/ai";
 
 interface FriendRequest {
   id: string;
@@ -52,7 +53,7 @@ const RequestList = () => {
       {requests.map((request) => (
         <div key={request.id} className={styles.requestCard}>
           <div className={styles.requestHeader}>
-            <div className={styles.friendAvatar}>👤</div>
+            <div className={styles.friendAvatar}><AiOutlineUser /></div>
             <div className={styles.requestInfo}>
               <h3 className={styles.requestName}>{request.userName}</h3>
               <p className={styles.requestId}>{request.userId}</p>

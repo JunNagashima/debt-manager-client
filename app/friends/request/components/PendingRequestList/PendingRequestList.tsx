@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './PendingRequestListStyle.module.scss';
+import { AiOutlineUser } from "react-icons/ai";
 
 interface PendingRequest {
   id: string;
@@ -34,7 +35,7 @@ export default function PendingRequestList() {
         <div className={styles.pendingList}>
           {pendingRequests.map((request) => (
             <div key={request.id} className={styles.pendingItem}>
-              <div className={styles.friendAvatarSmall}>👤</div>
+              <div className={styles.friendAvatarSmall}><AiOutlineUser /></div>
               <div className={styles.pendingInfo}>
                 <span className={styles.pendingName}>{request.name}</span>
                 <span className={styles.pendingId}>{request.userId}</span>

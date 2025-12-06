@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import FriendCard from '../FriendCard/FriendCard';
 import styles from './FriendListStyle.module.scss';
+import { AiOutlinePlus } from "react-icons/ai";
 
 const FriendList = () => {
   const friends = [
@@ -39,7 +40,7 @@ const FriendList = () => {
 
       <div className={styles.addFriendBtnWrapper}>
         <Link href="/friends/request" className={styles.addFriendBtn}>
-          ➕ フレンドを追加
+          <AiOutlinePlus /> フレンドを追加
         </Link>
       </div>
     </>

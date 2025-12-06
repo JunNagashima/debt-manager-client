@@ -1,6 +1,8 @@
 'use client';
 
 import styles from './HistoryItemStyle.module.scss';
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 
 interface HistoryItemProps {
   id: string;
@@ -28,9 +30,9 @@ export default function HistoryItem({
   onDelete,
 }: HistoryItemProps) {
   const typeConfig = {
-    advance: { label: '💰 立替', className: styles.advance },
-    repayment: { label: '💵 返済', className: styles.repayment },
-    adjustment: { label: '⚙️ 調整', className: styles.adjustment },
+    advance: { label: '立替', className: styles.advance },
+    repayment: { label: '返済', className: styles.repayment },
+    adjustment: { label: '調整', className: styles.adjustment },
   };
 
   const config = typeConfig[type];
@@ -45,9 +47,8 @@ export default function HistoryItem({
           </span>
         </div>
         <span
-          className={`${styles.historyAmount} ${
-            type === 'advance' ? styles.positive : ''
-          }`}
+          className={`${styles.historyAmount} ${type === 'advance' ? styles.positive : ''
+            }`}
         >
           ¥{amount.toLocaleString()}
         </span>
@@ -55,7 +56,7 @@ export default function HistoryItem({
 
       <div className={styles.historyBody}>
         <div className={styles.historyUser}>
-          <span className={styles.userAvatarSmall}>👤</span>
+          <span className={styles.userAvatarSmall}><AiOutlineUser /></span>
           <span className={styles.userName}>{userName}</span>
         </div>
         <p className={styles.historyNote}>{note}</p>
@@ -76,14 +77,14 @@ export default function HistoryItem({
                 onClick={() => onEdit(id, type)}
                 title="編集"
               >
-                ✏️
+                <AiFillEdit />
               </button>
               <button
                 className={`${styles.btnIcon} ${styles.danger}`}
                 onClick={() => onDelete(id, type)}
                 title="削除"
               >
-                🗑️
+                <AiFillDelete />
               </button>
             </>
           )}

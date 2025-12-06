@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import styles from './FriendCardStyle.module.scss';
+import { AiOutlineRight, AiOutlineUser } from "react-icons/ai";
 
 interface FriendCardProps {
   id: string;
@@ -26,7 +27,7 @@ const FriendCard = ({ id, name, userId, balanceType, balanceAmount }: FriendCard
 
   return (
     <div className={styles.friendCard} onClick={handleClick}>
-      <div className={styles.friendAvatar}>👤</div>
+      <div className={styles.friendAvatar}><AiOutlineUser /></div>
       <div className={styles.friendInfo}>
         <h3 className={styles.friendName}>{name}</h3>
         <p className={styles.friendId}>{userId}</p>
@@ -37,7 +38,7 @@ const FriendCard = ({ id, name, userId, balanceType, balanceAmount }: FriendCard
           </span>
         </div>
       </div>
-      <div className={styles.friendArrow}>›</div>
+      <div className={styles.friendArrow}><AiOutlineRight /></div>
     </div>
   );
 };
