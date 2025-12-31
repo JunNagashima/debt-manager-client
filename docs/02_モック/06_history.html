@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>履歴 - わりかんノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1 class="header__title-center">履歴</h1>
+      <button class="header__btn header__btn--right" aria-label="検索" onclick="openModal('modal-search')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <!-- 月間サマリー -->
+      <section class="history-summary">
+        <div class="history-summary__header">
+          <button class="history-summary__nav" id="prev-month">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <h2 class="history-summary__month">2025年12月</h2>
+          <button class="history-summary__nav" id="next-month" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="history-summary__stats">
+          <div class="history-summary__stat">
+            <span class="history-summary__stat-label">取引件数</span>
+            <span class="history-summary__stat-value">12件</span>
+          </div>
+          <div class="history-summary__stat">
+            <span class="history-summary__stat-label">受取合計</span>
+            <span class="history-summary__stat-value history-summary__stat-value--lent">+¥15,800</span>
+          </div>
+          <div class="history-summary__stat">
+            <span class="history-summary__stat-label">支払合計</span>
+            <span class="history-summary__stat-value history-summary__stat-value--borrowed">-¥8,200</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- フィルター -->
+      <div class="history-filters">
+        <div class="filter-chips">
+          <button class="filter-chip filter-chip--active" data-filter="all">すべて</button>
+          <button class="filter-chip" data-filter="advance">立替</button>
+          <button class="filter-chip" data-filter="repayment">返済</button>
+          <button class="filter-chip" data-filter="offset">相殺</button>
+        </div>
+        <button class="filter-btn" onclick="openModal('modal-filter')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 履歴リスト -->
+      <div class="history-list">
+        <!-- 12月20日 -->
+        <div class="history-group">
+          <div class="history-group__date">
+            <span class="history-group__day">20</span>
+            <span class="history-group__weekday">金</span>
+          </div>
+          <ul class="history-group__items">
+            <li class="history-item" onclick="openModal('modal-history-detail-advance')">
+              <div class="history-item__icon history-item__icon--advance-out">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">立替</span>
+                  <span class="history-item__user">→ 鈴木 一郎</span>
+                </div>
+                <p class="history-item__memo">タクシー代</p>
+              </div>
+              <div class="history-item__amount history-item__amount--lent">+¥2,000</div>
+            </li>
+            <li class="history-item" onclick="openModal('modal-history-detail-repayment')">
+              <div class="history-item__icon history-item__icon--repayment-in">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">返済</span>
+                  <span class="history-item__user">← 佐藤 花子</span>
+                </div>
+                <p class="history-item__memo">ランチ代の返済</p>
+              </div>
+              <div class="history-item__amount history-item__amount--lent">+¥3,000</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 12月19日 -->
+        <div class="history-group">
+          <div class="history-group__date">
+            <span class="history-group__day">19</span>
+            <span class="history-group__weekday">木</span>
+          </div>
+          <ul class="history-group__items">
+            <li class="history-item" onclick="openModal('modal-history-detail-advance')">
+              <div class="history-item__icon history-item__icon--advance-in">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">立替</span>
+                  <span class="history-item__user">← 佐藤 花子</span>
+                </div>
+                <p class="history-item__memo">ランチ代</p>
+                <span class="history-item__status history-item__status--pending">承認待ち</span>
+              </div>
+              <div class="history-item__amount history-item__amount--borrowed">-¥3,000</div>
+            </li>
+            <li class="history-item" onclick="openModal('modal-history-detail-repayment')">
+              <div class="history-item__icon history-item__icon--repayment-out">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">返済</span>
+                  <span class="history-item__user">→ 鈴木 一郎</span>
+                </div>
+                <p class="history-item__memo">カフェ代の返済</p>
+              </div>
+              <div class="history-item__amount history-item__amount--borrowed">-¥2,000</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 12月18日 -->
+        <div class="history-group">
+          <div class="history-group__date">
+            <span class="history-group__day">18</span>
+            <span class="history-group__weekday">水</span>
+          </div>
+          <ul class="history-group__items">
+            <li class="history-item" onclick="openModal('modal-history-detail-repayment')">
+              <div class="history-item__icon history-item__icon--repayment-in">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">返済</span>
+                  <span class="history-item__user">← 田中 美咲</span>
+                </div>
+                <p class="history-item__memo">映画代の返済</p>
+              </div>
+              <div class="history-item__amount history-item__amount--lent">+¥2,500</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 12月15日 -->
+        <div class="history-group">
+          <div class="history-group__date">
+            <span class="history-group__day">15</span>
+            <span class="history-group__weekday">日</span>
+          </div>
+          <ul class="history-group__items">
+            <li class="history-item" onclick="openModal('modal-history-detail-offset')">
+              <div class="history-item__icon history-item__icon--offset">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">相殺</span>
+                  <span class="history-item__user">⇄ 高橋 健太</span>
+                </div>
+                <p class="history-item__memo">残高を清算</p>
+              </div>
+              <div class="history-item__amount">¥3,000</div>
+            </li>
+            <li class="history-item" onclick="openModal('modal-history-detail-advance')">
+              <div class="history-item__icon history-item__icon--advance-in">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">立替</span>
+                  <span class="history-item__user">← 鈴木 一郎</span>
+                </div>
+                <p class="history-item__memo">飲み物代</p>
+              </div>
+              <div class="history-item__amount history-item__amount--borrowed">-¥2,500</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 12月12日 -->
+        <div class="history-group">
+          <div class="history-group__date">
+            <span class="history-group__day">12</span>
+            <span class="history-group__weekday">木</span>
+          </div>
+          <ul class="history-group__items">
+            <li class="history-item" onclick="openModal('modal-history-detail-advance')">
+              <div class="history-item__icon history-item__icon--advance-out">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">立替</span>
+                  <span class="history-item__user">→ 田中 美咲</span>
+                </div>
+                <p class="history-item__memo">プレゼント代</p>
+              </div>
+              <div class="history-item__amount history-item__amount--lent">+¥6,500</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 12月10日 -->
+        <div class="history-group">
+          <div class="history-group__date">
+            <span class="history-group__day">10</span>
+            <span class="history-group__weekday">火</span>
+          </div>
+          <ul class="history-group__items">
+            <li class="history-item history-item--rejected" onclick="openModal('modal-history-detail-rejected')">
+              <div class="history-item__icon history-item__icon--rejected">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">相殺</span>
+                  <span class="history-item__user">⇄ 佐藤 花子</span>
+                </div>
+                <p class="history-item__memo">相殺提案</p>
+                <span class="history-item__status history-item__status--rejected">却下</span>
+              </div>
+              <div class="history-item__amount">¥5,000</div>
+            </li>
+            <li class="history-item" onclick="openModal('modal-history-detail-repayment')">
+              <div class="history-item__icon history-item__icon--repayment-out">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+              </div>
+              <div class="history-item__content">
+                <div class="history-item__main">
+                  <span class="history-item__type">返済</span>
+                  <span class="history-item__user">→ 佐藤 花子</span>
+                </div>
+                <p class="history-item__memo">交通費の返済</p>
+              </div>
+              <div class="history-item__amount history-item__amount--borrowed">-¥1,200</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- もっと見る -->
+      <button class="btn-load-more">
+        もっと見る
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </main>
+
+    <!-- ボトムナビ -->
+    <nav class="bottom-nav">
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span class="bottom-nav__label">ホーム</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span class="bottom-nav__label">立替</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        <span class="bottom-nav__label">返済</span>
+      </button>
+      <button class="bottom-nav__item bottom-nav__item--active">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="bottom-nav__label">履歴</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span class="bottom-nav__label">フレンド</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- モーダル: 検索 -->
+  <div class="modal-overlay" id="modal-search" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">履歴を検索</h2>
+        <button class="modal__close" onclick="closeModal('modal-search')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="search-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-box__input" placeholder="メモやフレンド名で検索">
+        </div>
+        <div class="search-recent">
+          <p class="search-recent__title">最近の検索</p>
+          <ul class="search-recent__list">
+            <li class="search-recent__item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              ランチ
+            </li>
+            <li class="search-recent__item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              佐藤
+            </li>
+            <li class="search-recent__item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              タクシー
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 詳細フィルター -->
+  <div class="modal-overlay" id="modal-filter" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">絞り込み</h2>
+        <button class="modal__close" onclick="closeModal('modal-filter')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="form-group">
+          <label class="form-label">取引の種類</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-item__label">立替</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-item__label">返済</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-item__label">相殺</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">フレンド</label>
+          <select class="form-select">
+            <option value="">すべてのフレンド</option>
+            <option>佐藤 花子</option>
+            <option>鈴木 一郎</option>
+            <option>田中 美咲</option>
+            <option>高橋 健太</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">期間</label>
+          <div class="date-range">
+            <input type="date" class="form-input" value="2025-12-01">
+            <span class="date-range__separator">〜</span>
+            <input type="date" class="form-input" value="2025-12-21">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">金額</label>
+          <div class="amount-range">
+            <div class="form-amount form-amount--small">
+              <span class="form-amount__prefix">¥</span>
+              <input type="number" class="form-input" placeholder="下限">
+            </div>
+            <span class="amount-range__separator">〜</span>
+            <div class="form-amount form-amount--small">
+              <span class="form-amount__prefix">¥</span>
+              <input type="number" class="form-input" placeholder="上限">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ステータス</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-item__label">確定済み</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-item__label">承認待ち</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-item__label">却下</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-filter')">リセット</button>
+        <button class="btn btn--primary" onclick="closeModal('modal-filter')">適用する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 履歴詳細（立替） -->
+  <div class="modal-overlay" id="modal-history-detail-advance" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">取引詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-history-detail-advance')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--advance">立替</span>
+          </div>
+          <div class="transaction-detail__amount transaction-detail__amount--lent">+¥2,000</div>
+          <p class="transaction-detail__direction">あなた → 鈴木 一郎さん</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">日付</span>
+            <span class="confirm-row__value">2025/12/20</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">メモ</span>
+            <span class="confirm-row__value">タクシー代</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">ステータス</span>
+            <span class="confirm-row__value"><span class="timeline__status timeline__status--pending">承認待ち</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary btn--full" onclick="closeModal('modal-history-detail-advance')">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 履歴詳細（返済） -->
+  <div class="modal-overlay" id="modal-history-detail-repayment" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">取引詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-history-detail-repayment')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--repayment">返済</span>
+          </div>
+          <div class="transaction-detail__amount transaction-detail__amount--lent">+¥3,000</div>
+          <p class="transaction-detail__direction">佐藤 花子さん → あなた</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">日付</span>
+            <span class="confirm-row__value">2025/12/20</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">メモ</span>
+            <span class="confirm-row__value">ランチ代の返済</span>
+          </div>
+        </div>
+        <div class="balance-change">
+          <p class="balance-change__title">この取引による残高変化</p>
+          <div class="balance-change__row">
+            <div class="balance-change__item">
+              <span class="balance-change__label">取引前</span>
+              <span class="balance-change__value balance-change__value--lent">¥9,000 貸し</span>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="balance-change__item">
+              <span class="balance-change__label">取引後</span>
+              <span class="balance-change__value balance-change__value--lent">¥6,000 貸し</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary btn--full" onclick="closeModal('modal-history-detail-repayment')">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 履歴詳細（相殺） -->
+  <div class="modal-overlay" id="modal-history-detail-offset" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">取引詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-history-detail-offset')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--offset">相殺</span>
+            <span class="transaction-badge transaction-badge--approved">完了</span>
+          </div>
+          <div class="transaction-detail__amount">¥3,000</div>
+          <p class="transaction-detail__direction">高橋 健太さん との相殺</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">完了日</span>
+            <span class="confirm-row__value">2025/12/15</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">メモ</span>
+            <span class="confirm-row__value">残高を清算</span>
+          </div>
+        </div>
+        <div class="success-message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>残高が清算されました</p>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary btn--full" onclick="closeModal('modal-history-detail-offset')">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 履歴詳細（却下） -->
+  <div class="modal-overlay" id="modal-history-detail-rejected" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">取引詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-history-detail-rejected')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--offset">相殺</span>
+            <span class="transaction-badge transaction-badge--rejected">却下</span>
+          </div>
+          <div class="transaction-detail__amount">¥5,000</div>
+          <p class="transaction-detail__direction">佐藤 花子さん からの提案</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請日</span>
+            <span class="confirm-row__value">2025/12/09</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">却下日</span>
+            <span class="confirm-row__value">2025/12/10</span>
+          </div>
+        </div>
+        <div class="rejected-message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          <p>この提案は却下されました</p>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary btn--full" onclick="closeModal('modal-history-detail-rejected')">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // フィルターチップ切り替え
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('filter-chip--active'));
+        chip.classList.add('filter-chip--active');
+      });
+    });
+  </script>
+</body>
+</html>

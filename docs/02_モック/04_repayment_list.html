@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>返済記録 - わりかんノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="repayment_list.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1 class="header__title-center">返済記録</h1>
+      <button class="header__btn header__btn--right" aria-label="新規作成" onclick="openModal('modal-repayment-create')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <!-- サマリーカード -->
+      <section class="repayment-summary">
+        <div class="repayment-summary__item">
+          <div class="repayment-summary__icon repayment-summary__icon--received">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+          </div>
+          <div class="repayment-summary__content">
+            <p class="repayment-summary__label">今月受け取った</p>
+            <p class="repayment-summary__amount repayment-summary__amount--lent">¥8,500</p>
+          </div>
+        </div>
+        <div class="repayment-summary__divider"></div>
+        <div class="repayment-summary__item">
+          <div class="repayment-summary__icon repayment-summary__icon--paid">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+          </div>
+          <div class="repayment-summary__content">
+            <p class="repayment-summary__label">今月支払った</p>
+            <p class="repayment-summary__amount repayment-summary__amount--borrowed">¥3,200</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- タブ切り替え -->
+      <div class="tabs">
+        <button class="tabs__item tabs__item--active" data-tab="received">
+          受け取った返済
+        </button>
+        <button class="tabs__item" data-tab="paid">
+          支払った返済
+        </button>
+      </div>
+
+      <!-- 月別フィルター -->
+      <div class="month-filter">
+        <button class="month-filter__btn" id="prev-month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="month-filter__current">2025年12月</span>
+        <button class="month-filter__btn" id="next-month" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- 受け取った返済タブ -->
+      <div class="tab-content tab-content--active" id="tab-received">
+        <ul class="repayment-list">
+          <li class="repayment-card" onclick="openModal('modal-repayment-detail')">
+            <div class="repayment-card__main">
+              <div class="repayment-card__user">
+                <div class="repayment-card__avatar">佐</div>
+                <div class="repayment-card__info">
+                  <p class="repayment-card__name">佐藤 花子</p>
+                  <p class="repayment-card__date">2025/12/20</p>
+                </div>
+              </div>
+              <div class="repayment-card__amount repayment-card__amount--received">
+                <span class="repayment-card__direction">受取</span>
+                ¥3,000
+              </div>
+            </div>
+            <div class="repayment-card__detail">
+              <p class="repayment-card__memo">ランチ代の返済</p>
+              <div class="repayment-card__balance">
+                残高: <span class="repayment-card__balance-value repayment-card__balance-value--lent">¥6,000 貸し</span>
+              </div>
+            </div>
+          </li>
+          <li class="repayment-card" onclick="openModal('modal-repayment-detail')">
+            <div class="repayment-card__main">
+              <div class="repayment-card__user">
+                <div class="repayment-card__avatar">田</div>
+                <div class="repayment-card__info">
+                  <p class="repayment-card__name">田中 美咲</p>
+                  <p class="repayment-card__date">2025/12/18</p>
+                </div>
+              </div>
+              <div class="repayment-card__amount repayment-card__amount--received">
+                <span class="repayment-card__direction">受取</span>
+                ¥2,500
+              </div>
+            </div>
+            <div class="repayment-card__detail">
+              <p class="repayment-card__memo">映画代の返済</p>
+              <div class="repayment-card__balance">
+                残高: <span class="repayment-card__balance-value repayment-card__balance-value--lent">¥6,500 貸し</span>
+              </div>
+            </div>
+          </li>
+          <li class="repayment-card" onclick="openModal('modal-repayment-detail')">
+            <div class="repayment-card__main">
+              <div class="repayment-card__user">
+                <div class="repayment-card__avatar">高</div>
+                <div class="repayment-card__info">
+                  <p class="repayment-card__name">高橋 健太</p>
+                  <p class="repayment-card__date">2025/12/15</p>
+                </div>
+              </div>
+              <div class="repayment-card__amount repayment-card__amount--received">
+                <span class="repayment-card__direction">受取</span>
+                ¥3,000
+              </div>
+            </div>
+            <div class="repayment-card__detail">
+              <p class="repayment-card__memo">飲み会代精算</p>
+              <div class="repayment-card__balance">
+                残高: <span class="repayment-card__balance-value repayment-card__balance-value--settled">¥0 清算済み</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 支払った返済タブ -->
+      <div class="tab-content" id="tab-paid">
+        <ul class="repayment-list">
+          <li class="repayment-card" onclick="openModal('modal-repayment-detail-paid')">
+            <div class="repayment-card__main">
+              <div class="repayment-card__user">
+                <div class="repayment-card__avatar">鈴</div>
+                <div class="repayment-card__info">
+                  <p class="repayment-card__name">鈴木 一郎</p>
+                  <p class="repayment-card__date">2025/12/19</p>
+                </div>
+              </div>
+              <div class="repayment-card__amount repayment-card__amount--paid">
+                <span class="repayment-card__direction">支払</span>
+                ¥2,000
+              </div>
+            </div>
+            <div class="repayment-card__detail">
+              <p class="repayment-card__memo">カフェ代の返済</p>
+              <div class="repayment-card__balance">
+                残高: <span class="repayment-card__balance-value repayment-card__balance-value--borrowed">¥2,500 借り</span>
+              </div>
+            </div>
+          </li>
+          <li class="repayment-card" onclick="openModal('modal-repayment-detail-paid')">
+            <div class="repayment-card__main">
+              <div class="repayment-card__user">
+                <div class="repayment-card__avatar">佐</div>
+                <div class="repayment-card__info">
+                  <p class="repayment-card__name">佐藤 花子</p>
+                  <p class="repayment-card__date">2025/12/10</p>
+                </div>
+              </div>
+              <div class="repayment-card__amount repayment-card__amount--paid">
+                <span class="repayment-card__direction">支払</span>
+                ¥1,200
+              </div>
+            </div>
+            <div class="repayment-card__detail">
+              <p class="repayment-card__memo">交通費の返済</p>
+              <div class="repayment-card__balance">
+                残高: <span class="repayment-card__balance-value repayment-card__balance-value--lent">¥6,000 貸し</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 月合計 -->
+      <div class="month-total">
+        <div class="month-total__row">
+          <span class="month-total__label">今月の受取合計</span>
+          <span class="month-total__value month-total__value--lent">¥8,500</span>
+        </div>
+        <div class="month-total__row" id="paid-total" style="display: none;">
+          <span class="month-total__label">今月の支払合計</span>
+          <span class="month-total__value month-total__value--borrowed">¥3,200</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- FAB -->
+    <button class="fab" onclick="openModal('modal-repayment-create')" aria-label="新規返済記録">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button>
+
+    <!-- ボトムナビ -->
+    <nav class="bottom-nav">
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span class="bottom-nav__label">ホーム</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span class="bottom-nav__label">立替</span>
+      </button>
+      <button class="bottom-nav__item bottom-nav__item--active">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        <span class="bottom-nav__label">返済</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="bottom-nav__label">履歴</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span class="bottom-nav__label">フレンド</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- モーダル: 返済記録作成 -->
+  <div class="modal-overlay" id="modal-repayment-create" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">返済を記録</h2>
+        <button class="modal__close" onclick="closeModal('modal-repayment-create')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <!-- 返済種別選択 -->
+        <div class="form-group">
+          <label class="form-label">返済の種類</label>
+          <div class="toggle-buttons">
+            <button class="toggle-btn toggle-btn--active" data-type="received">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7 7 7-7"/></svg>
+              受け取った
+            </button>
+            <button class="toggle-btn" data-type="paid">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
+              支払った
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">相手</label>
+          <select class="form-select">
+            <option value="">フレンドを選択</option>
+            <option>佐藤 花子（¥6,000 貸し）</option>
+            <option>鈴木 一郎（¥2,500 借り）</option>
+            <option>田中 美咲（¥6,500 貸し）</option>
+            <option>高橋 健太（¥0 清算済み）</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">金額</label>
+          <div class="form-amount">
+            <span class="form-amount__prefix">¥</span>
+            <input type="number" class="form-input" placeholder="0" min="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">日付</label>
+          <input type="date" class="form-input" value="2025-12-21">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メモ（任意）</label>
+          <input type="text" class="form-input" placeholder="例：ランチ代の返済">
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-repayment-create')">キャンセル</button>
+        <button class="btn btn--primary">記録する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 返済詳細（受け取った） -->
+  <div class="modal-overlay" id="modal-repayment-detail" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">返済の詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-repayment-detail')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--repayment">返済</span>
+          </div>
+          <div class="transaction-detail__amount transaction-detail__amount--lent">¥3,000</div>
+          <p class="transaction-detail__direction">佐藤 花子さん → あなた</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">日付</span>
+            <span class="confirm-row__value">2025/12/20</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">メモ</span>
+            <span class="confirm-row__value">ランチ代の返済</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">記録日時</span>
+            <span class="confirm-row__value">2025/12/20 15:30</span>
+          </div>
+        </div>
+        <div class="balance-change">
+          <p class="balance-change__title">残高の変化</p>
+          <div class="balance-change__row">
+            <div class="balance-change__item">
+              <span class="balance-change__label">返済前</span>
+              <span class="balance-change__value balance-change__value--lent">¥9,000 貸し</span>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="balance-change__item">
+              <span class="balance-change__label">返済後</span>
+              <span class="balance-change__value balance-change__value--lent">¥6,000 貸し</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer modal__footer--stack">
+        <button class="btn btn--secondary" onclick="closeModal('modal-repayment-detail')">閉じる</button>
+        <button class="btn btn--ghost-danger">この記録を削除</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 返済詳細（支払った） -->
+  <div class="modal-overlay" id="modal-repayment-detail-paid" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">返済の詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-repayment-detail-paid')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--repayment">返済</span>
+          </div>
+          <div class="transaction-detail__amount transaction-detail__amount--borrowed">¥2,000</div>
+          <p class="transaction-detail__direction">あなた → 鈴木 一郎さん</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">日付</span>
+            <span class="confirm-row__value">2025/12/19</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">メモ</span>
+            <span class="confirm-row__value">カフェ代の返済</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">記録日時</span>
+            <span class="confirm-row__value">2025/12/19 18:45</span>
+          </div>
+        </div>
+        <div class="balance-change">
+          <p class="balance-change__title">残高の変化</p>
+          <div class="balance-change__row">
+            <div class="balance-change__item">
+              <span class="balance-change__label">返済前</span>
+              <span class="balance-change__value balance-change__value--borrowed">¥4,500 借り</span>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="balance-change__item">
+              <span class="balance-change__label">返済後</span>
+              <span class="balance-change__value balance-change__value--borrowed">¥2,500 借り</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer modal__footer--stack">
+        <button class="btn btn--secondary" onclick="closeModal('modal-repayment-detail-paid')">閉じる</button>
+        <button class="btn btn--ghost-danger">この記録を削除</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // タブ切り替え
+    document.querySelectorAll('.tabs__item').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tabs__item').forEach(t => t.classList.remove('tabs__item--active'));
+        tab.classList.add('tabs__item--active');
+        
+        const tabId = tab.dataset.tab;
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.remove('tab-content--active');
+        });
+        document.getElementById('tab-' + tabId).classList.add('tab-content--active');
+
+        // 月合計の表示切り替え
+        const receivedTotal = document.querySelector('.month-total__row:first-child');
+        const paidTotal = document.getElementById('paid-total');
+        if (tabId === 'received') {
+          receivedTotal.style.display = 'flex';
+          paidTotal.style.display = 'none';
+        } else {
+          receivedTotal.style.display = 'none';
+          paidTotal.style.display = 'flex';
+        }
+      });
+    });
+
+    // トグルボタン切り替え
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('toggle-btn--active'));
+        btn.classList.add('toggle-btn--active');
+      });
+    });
+  </script>
+</body>
+</html>

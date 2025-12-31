@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>相殺申請 - わりかんノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="offset_list.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1 class="header__title-center">相殺申請</h1>
+      <button class="header__btn header__btn--right" aria-label="相殺とは" onclick="openModal('modal-help')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <!-- 相殺説明バナー -->
+      <section class="info-banner">
+        <div class="info-banner__icon">⚖️</div>
+        <div class="info-banner__content">
+          <p class="info-banner__title">相殺とは？</p>
+          <p class="info-banner__desc">お互いの貸し借りを差し引きして、残高をまとめて精算できます</p>
+        </div>
+      </section>
+
+      <!-- 相殺可能なフレンド -->
+      <section class="section">
+        <div class="section__header">
+          <h2 class="section__title">相殺できるフレンド</h2>
+        </div>
+        <div class="offset-candidates">
+          <div class="offset-candidate" onclick="openModal('modal-offset-create')">
+            <div class="offset-candidate__avatar">鈴</div>
+            <div class="offset-candidate__info">
+              <p class="offset-candidate__name">鈴木 一郎</p>
+              <p class="offset-candidate__balance">相殺可能: <span>¥2,500</span></p>
+            </div>
+            <button class="offset-candidate__btn">提案する</button>
+          </div>
+        </div>
+        <p class="section__hint">※ お互いに貸し借りがあるフレンドのみ表示されます</p>
+      </section>
+
+      <!-- タブ切り替え -->
+      <div class="tabs">
+        <button class="tabs__item tabs__item--active" data-tab="received">
+          受け取った提案
+          <span class="tabs__badge">1</span>
+        </button>
+        <button class="tabs__item" data-tab="sent">
+          送った提案
+        </button>
+      </div>
+
+      <!-- 受け取った提案タブ -->
+      <div class="tab-content tab-content--active" id="tab-received">
+        <!-- 承認待ち -->
+        <section class="section">
+          <div class="section__header">
+            <h3 class="section__title">
+              <span class="status-dot status-dot--pending"></span>
+              承認待ち
+            </h3>
+            <span class="section__count">1件</span>
+          </div>
+          <ul class="offset-list">
+            <li class="offset-card offset-card--pending" onclick="openModal('modal-approve-offset')">
+              <div class="offset-card__header">
+                <div class="offset-card__user">
+                  <div class="offset-card__avatar">鈴</div>
+                  <div class="offset-card__info">
+                    <p class="offset-card__name">鈴木 一郎</p>
+                    <p class="offset-card__date">2025/12/20 申請</p>
+                  </div>
+                </div>
+                <span class="offset-card__status offset-card__status--pending">承認待ち</span>
+              </div>
+              <div class="offset-card__body">
+                <div class="offset-card__amount">
+                  <span class="offset-card__amount-label">相殺額</span>
+                  <span class="offset-card__amount-value">¥2,500</span>
+                </div>
+                <div class="offset-card__preview">
+                  <div class="offset-card__before">
+                    <span class="offset-card__preview-label">現在</span>
+                    <span class="offset-card__preview-value offset-card__preview-value--borrowed">¥2,500 借り</span>
+                  </div>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  <div class="offset-card__after">
+                    <span class="offset-card__preview-label">相殺後</span>
+                    <span class="offset-card__preview-value offset-card__preview-value--settled">¥0 清算</span>
+                  </div>
+                </div>
+              </div>
+              <div class="offset-card__footer">
+                <span class="offset-card__action">確認する →</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 完了済み -->
+        <section class="section">
+          <div class="section__header">
+            <h3 class="section__title">
+              <span class="status-dot status-dot--approved"></span>
+              完了済み
+            </h3>
+            <span class="section__count">2件</span>
+          </div>
+          <ul class="offset-list">
+            <li class="offset-card" onclick="openModal('modal-offset-detail')">
+              <div class="offset-card__header">
+                <div class="offset-card__user">
+                  <div class="offset-card__avatar">高</div>
+                  <div class="offset-card__info">
+                    <p class="offset-card__name">高橋 健太</p>
+                    <p class="offset-card__date">2025/12/15 完了</p>
+                  </div>
+                </div>
+                <span class="offset-card__status offset-card__status--approved">承認済み</span>
+              </div>
+              <div class="offset-card__body">
+                <div class="offset-card__amount">
+                  <span class="offset-card__amount-label">相殺額</span>
+                  <span class="offset-card__amount-value">¥3,000</span>
+                </div>
+              </div>
+            </li>
+            <li class="offset-card offset-card--rejected" onclick="openModal('modal-offset-detail-rejected')">
+              <div class="offset-card__header">
+                <div class="offset-card__user">
+                  <div class="offset-card__avatar">佐</div>
+                  <div class="offset-card__info">
+                    <p class="offset-card__name">佐藤 花子</p>
+                    <p class="offset-card__date">2025/12/10 却下</p>
+                  </div>
+                </div>
+                <span class="offset-card__status offset-card__status--rejected">却下</span>
+              </div>
+              <div class="offset-card__body">
+                <div class="offset-card__amount">
+                  <span class="offset-card__amount-label">相殺額</span>
+                  <span class="offset-card__amount-value">¥5,000</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- 送った提案タブ -->
+      <div class="tab-content" id="tab-sent">
+        <!-- 承認待ち -->
+        <section class="section">
+          <div class="section__header">
+            <h3 class="section__title">
+              <span class="status-dot status-dot--pending"></span>
+              承認待ち
+            </h3>
+            <span class="section__count">1件</span>
+          </div>
+          <ul class="offset-list">
+            <li class="offset-card offset-card--pending" onclick="openModal('modal-offset-sent-pending')">
+              <div class="offset-card__header">
+                <div class="offset-card__user">
+                  <div class="offset-card__avatar">田</div>
+                  <div class="offset-card__info">
+                    <p class="offset-card__name">田中 美咲</p>
+                    <p class="offset-card__date">2025/12/19 申請</p>
+                  </div>
+                </div>
+                <span class="offset-card__status offset-card__status--pending">相手の承認待ち</span>
+              </div>
+              <div class="offset-card__body">
+                <div class="offset-card__amount">
+                  <span class="offset-card__amount-label">相殺額</span>
+                  <span class="offset-card__amount-value">¥4,000</span>
+                </div>
+                <div class="offset-card__preview">
+                  <div class="offset-card__before">
+                    <span class="offset-card__preview-label">現在</span>
+                    <span class="offset-card__preview-value offset-card__preview-value--lent">¥6,500 貸し</span>
+                  </div>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  <div class="offset-card__after">
+                    <span class="offset-card__preview-label">相殺後</span>
+                    <span class="offset-card__preview-value offset-card__preview-value--lent">¥2,500 貸し</span>
+                  </div>
+                </div>
+              </div>
+              <div class="offset-card__footer">
+                <span class="offset-card__action">詳細を見る →</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 完了済み -->
+        <section class="section">
+          <div class="section__header">
+            <h3 class="section__title">
+              <span class="status-dot status-dot--approved"></span>
+              完了済み
+            </h3>
+            <span class="section__count">1件</span>
+          </div>
+          <ul class="offset-list">
+            <li class="offset-card" onclick="openModal('modal-offset-detail')">
+              <div class="offset-card__header">
+                <div class="offset-card__user">
+                  <div class="offset-card__avatar">鈴</div>
+                  <div class="offset-card__info">
+                    <p class="offset-card__name">鈴木 一郎</p>
+                    <p class="offset-card__date">2025/11/28 完了</p>
+                  </div>
+                </div>
+                <span class="offset-card__status offset-card__status--approved">承認済み</span>
+              </div>
+              <div class="offset-card__body">
+                <div class="offset-card__amount">
+                  <span class="offset-card__amount-label">相殺額</span>
+                  <span class="offset-card__amount-value">¥1,500</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <!-- ボトムナビ -->
+    <nav class="bottom-nav">
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span class="bottom-nav__label">ホーム</span>
+      </button>
+      <button class="bottom-nav__item bottom-nav__item--active">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span class="bottom-nav__label">立替</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        <span class="bottom-nav__label">返済</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="bottom-nav__label">履歴</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span class="bottom-nav__label">フレンド</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- モーダル: 相殺ヘルプ -->
+  <div class="modal-overlay" id="modal-help" onclick="closeModalOnOverlay(event)">
+    <div class="modal modal--center">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺とは？</h2>
+        <button class="modal__close" onclick="closeModal('modal-help')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="help-content">
+          <div class="help-item">
+            <div class="help-item__icon">🔄</div>
+            <div class="help-item__text">
+              <p class="help-item__title">貸し借りを相殺</p>
+              <p class="help-item__desc">お互いに貸し借りがある場合、差し引きして残高をまとめられます</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon">💰</div>
+            <div class="help-item__text">
+              <p class="help-item__title">現金のやり取り不要</p>
+              <p class="help-item__desc">相殺を使えば、実際にお金を渡さなくても精算できます</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <div class="help-item__icon">✅</div>
+            <div class="help-item__text">
+              <p class="help-item__title">相手の承認が必要</p>
+              <p class="help-item__desc">相殺は提案後、相手が承認すると成立します</p>
+            </div>
+          </div>
+        </div>
+        <div class="help-example">
+          <p class="help-example__title">例）</p>
+          <p class="help-example__text">あなたがAさんに ¥3,000 貸している<br>Aさんがあなたに ¥1,000 貸している</p>
+          <p class="help-example__result">→ 相殺後: あなたがAさんに <strong>¥2,000 貸し</strong></p>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--primary btn--full" onclick="closeModal('modal-help')">わかりました</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺提案作成 -->
+  <div class="modal-overlay" id="modal-offset-create" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺を提案</h2>
+        <button class="modal__close" onclick="closeModal('modal-offset-create')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="form-group">
+          <label class="form-label">相手</label>
+          <div class="form-static">
+            <div class="form-static__avatar">鈴</div>
+            <span class="form-static__name">鈴木 一郎</span>
+          </div>
+        </div>
+        
+        <div class="offset-info">
+          <div class="offset-info__card">
+            <p class="offset-info__label">相殺可能額</p>
+            <p class="offset-info__amount">¥2,500</p>
+          </div>
+        </div>
+
+        <div class="offset-breakdown">
+          <p class="offset-breakdown__title">現在の貸し借り</p>
+          <div class="offset-breakdown__row">
+            <span class="offset-breakdown__label">あなた → 鈴木さん</span>
+            <span class="offset-breakdown__value offset-breakdown__value--lent">¥5,000 貸し</span>
+          </div>
+          <div class="offset-breakdown__row">
+            <span class="offset-breakdown__label">鈴木さん → あなた</span>
+            <span class="offset-breakdown__value offset-breakdown__value--borrowed">¥2,500 貸し</span>
+          </div>
+        </div>
+
+        <div class="offset-result">
+          <p class="offset-result__title">相殺後の残高</p>
+          <div class="offset-result__change">
+            <div class="offset-result__before">
+              <span class="offset-result__label">現在</span>
+              <span class="offset-result__value offset-result__value--borrowed">¥2,500 借り</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="offset-result__after">
+              <span class="offset-result__label">相殺後</span>
+              <span class="offset-result__value offset-result__value--settled">¥0 清算</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-offset-create')">キャンセル</button>
+        <button class="btn btn--primary">提案する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺申請の承認 -->
+  <div class="modal-overlay" id="modal-approve-offset" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺申請の確認</h2>
+        <button class="modal__close" onclick="closeModal('modal-approve-offset')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請者</span>
+            <span class="confirm-row__value">鈴木 一郎さん</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">相殺額</span>
+            <span class="confirm-row__value confirm-row__value--amount">¥2,500</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請日</span>
+            <span class="confirm-row__value">2025/12/20</span>
+          </div>
+        </div>
+
+        <div class="offset-result">
+          <p class="offset-result__title">相殺後の残高</p>
+          <div class="offset-result__change">
+            <div class="offset-result__before">
+              <span class="offset-result__label">現在</span>
+              <span class="offset-result__value offset-result__value--borrowed">¥2,500 借り</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="offset-result__after">
+              <span class="offset-result__label">相殺後</span>
+              <span class="offset-result__value offset-result__value--settled">¥0 清算</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact-notice impact-notice--info">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <div class="impact-notice__content">
+            <p class="impact-notice__title">承認すると...</p>
+            <p class="impact-notice__desc">鈴木さんとの残高が<strong>清算</strong>されます</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--danger" onclick="closeModal('modal-approve-offset')">却下</button>
+        <button class="btn btn--primary">承認する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 送った申請詳細（承認待ち） -->
+  <div class="modal-overlay" id="modal-offset-sent-pending" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺申請の詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-offset-sent-pending')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--offset">相殺</span>
+            <span class="transaction-badge transaction-badge--pending">承認待ち</span>
+          </div>
+          <div class="transaction-detail__amount">¥4,000</div>
+          <p class="transaction-detail__direction">田中 美咲さん への提案</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請日</span>
+            <span class="confirm-row__value">2025/12/19</span>
+          </div>
+        </div>
+        <div class="offset-result">
+          <p class="offset-result__title">相殺後の残高（予定）</p>
+          <div class="offset-result__change">
+            <div class="offset-result__before">
+              <span class="offset-result__label">現在</span>
+              <span class="offset-result__value offset-result__value--lent">¥6,500 貸し</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div class="offset-result__after">
+              <span class="offset-result__label">相殺後</span>
+              <span class="offset-result__value offset-result__value--lent">¥2,500 貸し</span>
+            </div>
+          </div>
+        </div>
+        <div class="pending-notice">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <p>相手の承認をお待ちください</p>
+        </div>
+      </div>
+      <div class="modal__footer modal__footer--stack">
+        <button class="btn btn--secondary" onclick="closeModal('modal-offset-sent-pending')">閉じる</button>
+        <button class="btn btn--ghost-danger">この提案を取り消す</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺詳細（承認済み） -->
+  <div class="modal-overlay" id="modal-offset-detail" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺申請の詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-offset-detail')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--offset">相殺</span>
+            <span class="transaction-badge transaction-badge--approved">承認済み</span>
+          </div>
+          <div class="transaction-detail__amount">¥3,000</div>
+          <p class="transaction-detail__direction">高橋 健太さん との相殺</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請日</span>
+            <span class="confirm-row__value">2025/12/14</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">承認日</span>
+            <span class="confirm-row__value">2025/12/15</span>
+          </div>
+        </div>
+        <div class="success-message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>この相殺は正常に完了しました</p>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary btn--full" onclick="closeModal('modal-offset-detail')">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺詳細（却下） -->
+  <div class="modal-overlay" id="modal-offset-detail-rejected" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺申請の詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-offset-detail-rejected')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--offset">相殺</span>
+            <span class="transaction-badge transaction-badge--rejected">却下</span>
+          </div>
+          <div class="transaction-detail__amount">¥5,000</div>
+          <p class="transaction-detail__direction">佐藤 花子さん からの提案</p>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請日</span>
+            <span class="confirm-row__value">2025/12/09</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">却下日</span>
+            <span class="confirm-row__value">2025/12/10</span>
+          </div>
+        </div>
+        <div class="rejected-message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          <p>この相殺提案は却下されました</p>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary btn--full" onclick="closeModal('modal-offset-detail-rejected')">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // タブ切り替え
+    document.querySelectorAll('.tabs__item').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tabs__item').forEach(t => t.classList.remove('tabs__item--active'));
+        tab.classList.add('tabs__item--active');
+        
+        const tabId = tab.dataset.tab;
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.remove('tab-content--active');
+        });
+        document.getElementById('tab-' + tabId).classList.add('tab-content--active');
+      });
+    });
+  </script>
+</body>
+</html>

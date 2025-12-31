@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>設定 - わりかんノート</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ヘッダー -->
+      <header class="header header--back">
+        <button class="header__btn" aria-label="戻る" onclick="history.back()">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h1 class="header__title">設定</h1>
+        <div class="header__btn" style="visibility: hidden"></div>
+      </header>
+
+      <!-- メインコンテンツ -->
+      <main class="main">
+        <!-- プロフィールカード -->
+        <section class="profile-card" onclick="openModal('modal-edit-profile')">
+          <div class="profile-card__avatar">
+            <span class="profile-card__avatar-text">🌸</span>
+            <button class="profile-card__avatar-edit">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                ></path>
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="profile-card__info">
+            <p class="profile-card__name">山田 花子</p>
+            <p class="profile-card__id">@yamada_hanako</p>
+          </div>
+          <svg
+            class="profile-card__arrow"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </section>
+
+        <!-- アカウント設定 -->
+        <section class="settings-section">
+          <h2 class="settings-section__title">アカウント</h2>
+          <ul class="settings-list">
+            <li class="settings-item" onclick="openModal('modal-edit-profile')">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">プロフィール編集</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item" onclick="openModal('modal-change-email')">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">メールアドレス</span>
+                <span class="settings-item__value">hanako@example.com</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li
+              class="settings-item"
+              onclick="openModal('modal-change-password')"
+            >
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect
+                    x="3"
+                    y="11"
+                    width="18"
+                    height="11"
+                    rx="2"
+                    ry="2"
+                  ></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">パスワード変更</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 通知設定 -->
+        <section class="settings-section">
+          <h2 class="settings-section__title">通知</h2>
+          <ul class="settings-list">
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">プッシュ通知</span>
+                <span class="settings-item__desc"
+                  >立替申請や返済記録の通知</span
+                >
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-switch__slider"></span>
+              </label>
+            </li>
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">メール通知</span>
+                <span class="settings-item__desc"
+                  >週次サマリーをメールで受け取る</span
+                >
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-switch__slider"></span>
+              </label>
+            </li>
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"
+                  ></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">リマインダー</span>
+                <span class="settings-item__desc"
+                  >未清算の残高をリマインド</span
+                >
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-switch__slider"></span>
+              </label>
+            </li>
+          </ul>
+        </section>
+
+        <!-- アプリ設定 -->
+        <section class="settings-section">
+          <h2 class="settings-section__title">アプリ</h2>
+          <ul class="settings-list">
+            <li class="settings-item" onclick="openModal('modal-theme')">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">テーマ</span>
+                <span class="settings-item__value">ライト</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item" onclick="openModal('modal-language')">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">言語</span>
+                <span class="settings-item__value">日本語</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item" onclick="openModal('modal-currency')">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path
+                    d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                  ></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">通貨</span>
+                <span class="settings-item__value">日本円（¥）</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+          </ul>
+        </section>
+
+        <!-- データ・プライバシー -->
+        <section class="settings-section">
+          <h2 class="settings-section__title">データ・プライバシー</h2>
+          <ul class="settings-list">
+            <li class="settings-item" onclick="openModal('modal-export')">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">データをエクスポート</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">プライバシーポリシー</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">利用規約</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+          </ul>
+        </section>
+
+        <!-- サポート -->
+        <section class="settings-section">
+          <h2 class="settings-section__title">サポート</h2>
+          <ul class="settings-list">
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">ヘルプ・FAQ</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">お問い合わせ</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+            <li class="settings-item">
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">アプリについて</span>
+                <span class="settings-item__value">バージョン 1.0.0</span>
+              </div>
+              <svg
+                class="settings-item__arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </li>
+          </ul>
+        </section>
+
+        <!-- ログアウト・退会 -->
+        <section class="settings-section">
+          <ul class="settings-list">
+            <li
+              class="settings-item settings-item--logout"
+              onclick="openModal('modal-logout')"
+            >
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">ログアウト</span>
+              </div>
+            </li>
+            <li
+              class="settings-item settings-item--danger"
+              onclick="openModal('modal-delete-account')"
+            >
+              <div class="settings-item__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path
+                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                  ></path>
+                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+              </div>
+              <div class="settings-item__content">
+                <span class="settings-item__label">アカウントを削除</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- モーダル: プロフィール編集 -->
+    <div
+      class="modal-overlay"
+      id="modal-edit-profile"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal">
+        <div class="modal__header">
+          <h2 class="modal__title">プロフィール編集</h2>
+          <button
+            class="modal__close"
+            onclick="closeModal('modal-edit-profile')"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="profile-edit-avatar">
+            <div class="profile-edit-avatar__image">🌸</div>
+            <button class="profile-edit-avatar__btn">画像を変更</button>
+          </div>
+          <div class="form-group">
+            <label class="form-label">表示名</label>
+            <input type="text" class="form-input" value="山田 花子" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">ユーザーID</label>
+            <div class="form-input-with-prefix">
+              <span class="form-input-with-prefix__prefix">@</span>
+              <input type="text" class="form-input" value="yamada_hanako" />
+            </div>
+            <p class="form-hint">半角英数字とアンダースコアのみ使用できます</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">自己紹介（任意）</label>
+            <textarea
+              class="form-textarea"
+              rows="3"
+              placeholder="自己紹介を入力"
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="btn btn--secondary"
+            onclick="closeModal('modal-edit-profile')"
+          >
+            キャンセル
+          </button>
+          <button class="btn btn--primary">保存する</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル: メールアドレス変更 -->
+    <div
+      class="modal-overlay"
+      id="modal-change-email"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal">
+        <div class="modal__header">
+          <h2 class="modal__title">メールアドレス変更</h2>
+          <button
+            class="modal__close"
+            onclick="closeModal('modal-change-email')"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-label">現在のメールアドレス</label>
+            <p class="form-static-text">hanako@example.com</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">新しいメールアドレス</label>
+            <input
+              type="email"
+              class="form-input"
+              placeholder="新しいメールアドレスを入力"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">パスワード</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="現在のパスワードを入力"
+            />
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="btn btn--secondary"
+            onclick="closeModal('modal-change-email')"
+          >
+            キャンセル
+          </button>
+          <button class="btn btn--primary">変更する</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル: パスワード変更 -->
+    <div
+      class="modal-overlay"
+      id="modal-change-password"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal">
+        <div class="modal__header">
+          <h2 class="modal__title">パスワード変更</h2>
+          <button
+            class="modal__close"
+            onclick="closeModal('modal-change-password')"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-label">現在のパスワード</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="現在のパスワードを入力"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">新しいパスワード</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="新しいパスワードを入力"
+            />
+            <p class="form-hint">8文字以上で設定してください</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">新しいパスワード（確認）</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="もう一度入力"
+            />
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="btn btn--secondary"
+            onclick="closeModal('modal-change-password')"
+          >
+            キャンセル
+          </button>
+          <button class="btn btn--primary">変更する</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル: テーマ選択 -->
+    <div
+      class="modal-overlay"
+      id="modal-theme"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal modal--center">
+        <div class="modal__header">
+          <h2 class="modal__title">テーマ</h2>
+          <button class="modal__close" onclick="closeModal('modal-theme')">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <ul class="radio-list">
+            <li class="radio-item radio-item--selected">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <span>ライト</span>
+              <span class="radio-item__check">✓</span>
+            </li>
+            <li class="radio-item">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+              <span>ダーク</span>
+            </li>
+            <li class="radio-item">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <span>システム設定に従う</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル: データエクスポート -->
+    <div
+      class="modal-overlay"
+      id="modal-export"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal">
+        <div class="modal__header">
+          <h2 class="modal__title">データをエクスポート</h2>
+          <button class="modal__close" onclick="closeModal('modal-export')">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <p class="export-desc">
+            取引履歴をファイルとしてダウンロードできます。
+          </p>
+          <div class="form-group">
+            <label class="form-label">期間</label>
+            <select class="form-select">
+              <option>すべて</option>
+              <option>過去1ヶ月</option>
+              <option>過去3ヶ月</option>
+              <option>過去6ヶ月</option>
+              <option>過去1年</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ファイル形式</label>
+            <div class="radio-buttons">
+              <label class="radio-button radio-button--active">
+                <input type="radio" name="format" value="csv" checked />
+                <span>CSV</span>
+              </label>
+              <label class="radio-button">
+                <input type="radio" name="format" value="pdf" />
+                <span>PDF</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="btn btn--secondary"
+            onclick="closeModal('modal-export')"
+          >
+            キャンセル
+          </button>
+          <button class="btn btn--primary">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            ダウンロード
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル: ログアウト確認 -->
+    <div
+      class="modal-overlay"
+      id="modal-logout"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal modal--center">
+        <div class="modal__header">
+          <h2 class="modal__title">ログアウト</h2>
+          <button class="modal__close" onclick="closeModal('modal-logout')">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body modal__body--center">
+          <p class="confirm-note">ログアウトしますか？</p>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="btn btn--secondary"
+            onclick="closeModal('modal-logout')"
+          >
+            キャンセル
+          </button>
+          <button class="btn btn--primary">ログアウト</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル: アカウント削除確認 -->
+    <div
+      class="modal-overlay"
+      id="modal-delete-account"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal">
+        <div class="modal__header">
+          <h2 class="modal__title">アカウントを削除</h2>
+          <button
+            class="modal__close"
+            onclick="closeModal('modal-delete-account')"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="danger-box">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+              ></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <div class="danger-box__content">
+              <p class="danger-box__title">この操作は取り消せません</p>
+              <ul class="danger-box__list">
+                <li>すべての取引履歴が削除されます</li>
+                <li>フレンドとの接続が解除されます</li>
+                <li>未清算の残高情報も失われます</li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">確認のためパスワードを入力</label>
+            <input
+              type="password"
+              class="form-input"
+              placeholder="パスワードを入力"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">「削除する」と入力してください</label>
+            <input type="text" class="form-input" placeholder="削除する" />
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button
+            class="btn btn--secondary"
+            onclick="closeModal('modal-delete-account')"
+          >
+            キャンセル
+          </button>
+          <button class="btn btn--danger">アカウントを削除</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

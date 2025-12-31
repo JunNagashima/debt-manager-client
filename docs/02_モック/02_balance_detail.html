@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>残高詳細 - わりかんノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="balance_detail.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ヘッダー（戻るボタン付き） -->
+    <header class="header header--back">
+      <button class="header__btn" aria-label="戻る" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1 class="header__title">残高詳細</h1>
+      <button class="header__btn" aria-label="メニュー" onclick="openModal('modal-menu')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="12" cy="5" r="1"></circle>
+          <circle cx="12" cy="19" r="1"></circle>
+        </svg>
+      </button>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <!-- フレンド情報＆残高サマリー -->
+      <section class="detail-summary">
+        <div class="detail-summary__avatar">佐</div>
+        <h2 class="detail-summary__name">佐藤 花子</h2>
+        <p class="detail-summary__id">@sato_hanako</p>
+        <div class="detail-summary__balance">
+          <p class="detail-summary__label">現在の残高</p>
+          <p class="detail-summary__amount detail-summary__amount--lent">
+            <span class="detail-summary__prefix">あなたが貸している</span>
+            ¥6,000
+          </p>
+        </div>
+      </section>
+
+      <!-- アクションボタン -->
+      <section class="detail-actions">
+        <button class="btn btn--primary" onclick="openModal('modal-advance')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          立替を申請
+        </button>
+        <button class="btn btn--secondary" onclick="openModal('modal-repayment')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          返済を記録
+        </button>
+      </section>
+
+      <!-- 残高内訳 -->
+      <section class="section">
+        <div class="section__header">
+          <h3 class="section__title">残高の内訳</h3>
+        </div>
+        <div class="breakdown-card">
+          <div class="breakdown-row">
+            <div class="breakdown-row__label">
+              <span class="breakdown-dot breakdown-dot--lent"></span>
+              あなたが立て替えた額
+            </div>
+            <div class="breakdown-row__value breakdown-row__value--lent">¥12,000</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row__label">
+              <span class="breakdown-dot breakdown-dot--borrowed"></span>
+              相手が立て替えた額
+            </div>
+            <div class="breakdown-row__value breakdown-row__value--borrowed">¥6,000</div>
+          </div>
+          <div class="breakdown-divider"></div>
+          <div class="breakdown-row breakdown-row--total">
+            <div class="breakdown-row__label">差し引き残高</div>
+            <div class="breakdown-row__value breakdown-row__value--lent">¥6,000</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 取引履歴 -->
+      <section class="section">
+        <div class="section__header">
+          <h3 class="section__title">取引履歴</h3>
+          <select class="filter-select" id="history-filter">
+            <option value="all">すべて</option>
+            <option value="advance">立替のみ</option>
+            <option value="repayment">返済のみ</option>
+          </select>
+        </div>
+        
+        <!-- 履歴タイムライン -->
+        <div class="timeline">
+          <!-- 2024年12月 -->
+          <div class="timeline__group">
+            <div class="timeline__date">2025年12月</div>
+            <ul class="timeline__list">
+              <li class="timeline__item timeline__item--advance-out">
+                <div class="timeline__dot"></div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <span class="timeline__type">立替（あなた→相手）</span>
+                    <span class="timeline__time">12/19</span>
+                  </div>
+                  <p class="timeline__desc">ランチ代</p>
+                  <p class="timeline__amount timeline__amount--lent">+¥3,000</p>
+                  <span class="timeline__status timeline__status--pending">承認待ち</span>
+                </div>
+              </li>
+              <li class="timeline__item timeline__item--repayment-in">
+                <div class="timeline__dot"></div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <span class="timeline__type">返済（相手→あなた）</span>
+                    <span class="timeline__time">12/15</span>
+                  </div>
+                  <p class="timeline__desc">映画代の返済</p>
+                  <p class="timeline__amount timeline__amount--lent">+¥1,800</p>
+                  <span class="timeline__status timeline__status--confirmed">確定済み</span>
+                </div>
+              </li>
+              <li class="timeline__item timeline__item--advance-in">
+                <div class="timeline__dot"></div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <span class="timeline__type">立替（相手→あなた）</span>
+                    <span class="timeline__time">12/10</span>
+                  </div>
+                  <p class="timeline__desc">カフェ代</p>
+                  <p class="timeline__amount timeline__amount--borrowed">-¥1,200</p>
+                  <span class="timeline__status timeline__status--confirmed">確定済み</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 2024年11月 -->
+          <div class="timeline__group">
+            <div class="timeline__date">2025年11月</div>
+            <ul class="timeline__list">
+              <li class="timeline__item timeline__item--advance-out">
+                <div class="timeline__dot"></div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <span class="timeline__type">立替（あなた→相手）</span>
+                    <span class="timeline__time">11/28</span>
+                  </div>
+                  <p class="timeline__desc">飲み会代</p>
+                  <p class="timeline__amount timeline__amount--lent">+¥4,500</p>
+                  <span class="timeline__status timeline__status--confirmed">確定済み</span>
+                </div>
+              </li>
+              <li class="timeline__item timeline__item--advance-in">
+                <div class="timeline__dot"></div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <span class="timeline__type">立替（相手→あなた）</span>
+                    <span class="timeline__time">11/20</span>
+                  </div>
+                  <p class="timeline__desc">タクシー代</p>
+                  <p class="timeline__amount timeline__amount--borrowed">-¥2,300</p>
+                  <span class="timeline__status timeline__status--confirmed">確定済み</span>
+                </div>
+              </li>
+              <li class="timeline__item timeline__item--repayment-out">
+                <div class="timeline__dot"></div>
+                <div class="timeline__content">
+                  <div class="timeline__header">
+                    <span class="timeline__type">返済（あなた→相手）</span>
+                    <span class="timeline__time">11/15</span>
+                  </div>
+                  <p class="timeline__desc">先月分まとめて</p>
+                  <p class="timeline__amount timeline__amount--borrowed">-¥5,000</p>
+                  <span class="timeline__status timeline__status--confirmed">確定済み</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- もっと見る -->
+        <button class="btn-load-more">
+          もっと見る
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </section>
+    </main>
+
+    <!-- ボトムナビ -->
+    <nav class="bottom-nav">
+      <button class="bottom-nav__item bottom-nav__item--active">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span class="bottom-nav__label">ホーム</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span class="bottom-nav__label">立替</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        <span class="bottom-nav__label">返済</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="bottom-nav__label">履歴</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span class="bottom-nav__label">フレンド</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- モーダル: メニュー -->
+  <div class="modal-overlay" id="modal-menu" onclick="closeModalOnOverlay(event)">
+    <div class="modal modal--center">
+      <div class="modal__header">
+        <h2 class="modal__title">メニュー</h2>
+        <button class="modal__close" onclick="closeModal('modal-menu')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <ul class="menu-list">
+          <li class="menu-list__item" onclick="openModal('modal-offset'); closeModal('modal-menu');">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+            相殺を提案する
+          </li>
+          <li class="menu-list__item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            履歴をエクスポート
+          </li>
+          <li class="menu-list__item menu-list__item--danger">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="18" y1="8" x2="23" y2="13"></line><line x1="23" y1="8" x2="18" y2="13"></line></svg>
+            フレンドを解除
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 立替申請作成（この相手向け） -->
+  <div class="modal-overlay" id="modal-advance" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">立替を申請</h2>
+        <button class="modal__close" onclick="closeModal('modal-advance')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <!-- 相手は固定表示 -->
+        <div class="form-group">
+          <label class="form-label">相手</label>
+          <div class="form-static">
+            <div class="form-static__avatar">佐</div>
+            <span class="form-static__name">佐藤 花子</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">金額</label>
+          <div class="form-amount">
+            <span class="form-amount__prefix">¥</span>
+            <input type="number" class="form-input" placeholder="0" min="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">日付</label>
+          <input type="date" class="form-input" value="2025-12-21">
+          <p class="form-hint">未来の日付は選択できません</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">メモ（任意）</label>
+          <input type="text" class="form-input" placeholder="例：ランチ代">
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-advance')">キャンセル</button>
+        <button class="btn btn--primary">申請する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 返済記録（この相手向け） -->
+  <div class="modal-overlay" id="modal-repayment" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">返済を記録</h2>
+        <button class="modal__close" onclick="closeModal('modal-repayment')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <!-- 相手は固定表示 -->
+        <div class="form-group">
+          <label class="form-label">相手</label>
+          <div class="form-static">
+            <div class="form-static__avatar">佐</div>
+            <div class="form-static__info">
+              <span class="form-static__name">佐藤 花子</span>
+              <span class="form-static__balance">現在 ¥6,000 貸し</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">金額</label>
+          <div class="form-amount">
+            <span class="form-amount__prefix">¥</span>
+            <input type="number" class="form-input" placeholder="0" min="1">
+          </div>
+          <p class="form-hint">相手からあなたへの返済として記録されます</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">日付</label>
+          <input type="date" class="form-input" value="2025-12-21">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メモ（任意）</label>
+          <input type="text" class="form-input" placeholder="例：ランチ代の返済">
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-repayment')">キャンセル</button>
+        <button class="btn btn--primary">記録する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺提案 -->
+<div class="modal-overlay" id="modal-offset" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <div class="modal__header">
+      <h2 class="modal__title">相殺を提案</h2>
+      <button class="modal__close" onclick="closeModal('modal-offset')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="form-group">
+        <label class="form-label">相手</label>
+        <div class="form-static">
+          <div class="form-static__avatar">佐</div>
+          <span class="form-static__name">佐藤 花子</span>
+        </div>
+      </div>
+      
+      <div class="offset-info">
+        <div class="offset-info__card">
+          <p class="offset-info__label">相殺可能額</p>
+          <p class="offset-info__amount">¥6,000</p>
+          <p class="offset-info__note">全額相殺で清算完了</p>
+        </div>
+      </div>
+
+      <div class="offset-result">
+        <p class="offset-result__title">相殺後の残高</p>
+        <div class="offset-result__change">
+          <div class="offset-result__before">
+            <span class="offset-result__label">現在</span>
+            <span class="offset-result__value offset-result__value--lent">¥6,000 貸し</span>
+          </div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="offset-result__after">
+            <span class="offset-result__label">相殺後</span>
+            <span class="offset-result__value offset-result__value--settled">¥0 清算</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn--secondary" onclick="closeModal('modal-offset')">キャンセル</button>
+      <button class="btn btn--primary">提案する</button>
+    </div>
+  </div>
+</div>
+
+  <!-- モーダル: 取引詳細 -->
+  <div class="modal-overlay" id="modal-transaction-detail" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">取引詳細</h2>
+        <button class="modal__close" onclick="closeModal('modal-transaction-detail')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <div class="transaction-detail">
+          <div class="transaction-detail__type">
+            <span class="transaction-badge transaction-badge--advance">立替</span>
+          </div>
+          <div class="transaction-detail__amount transaction-detail__amount--lent">+¥3,000</div>
+          <p class="transaction-detail__direction">あなた → 佐藤 花子さん</p>
+        </div>
+        
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">日付</span>
+            <span class="confirm-row__value">2025/12/19</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">メモ</span>
+            <span class="confirm-row__value">ランチ代</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">ステータス</span>
+            <span class="confirm-row__value"><span class="timeline__status timeline__status--pending">承認待ち</span></span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">申請日時</span>
+            <span class="confirm-row__value">2025/12/19 14:30</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer modal__footer--stack">
+        <button class="btn btn--secondary" onclick="closeModal('modal-transaction-detail')">閉じる</button>
+        <button class="btn btn--ghost-danger">この申請を取り消す</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

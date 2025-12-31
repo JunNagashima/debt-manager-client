@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ホーム - わりかんノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ヘッダー -->
+    <header class="header">
+      <div class="header__user">
+        <div class="header__avatar">🌸</div>
+        <div class="header__info">
+          <span class="header__greeting">おかえりなさい</span>
+          <span class="header__name">山田 花子さん</span>
+        </div>
+      </div>
+      <div class="header__actions">
+        <button class="header__btn header__btn--has-badge" aria-label="通知">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span class="header__badge"></span>
+        </button>
+        <button class="header__btn" aria-label="設定">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <!-- 残高サマリー -->
+      <section class="summary">
+        <p class="summary__title">今月の残高</p>
+        <div class="summary__grid">
+          <div class="summary__item">
+            <p class="summary__label">
+              <span class="summary__dot summary__dot--lent"></span>
+              受け取り予定
+            </p>
+            <p class="summary__amount summary__amount--lent">¥12,500</p>
+          </div>
+          <div class="summary__divider"></div>
+          <div class="summary__item">
+            <p class="summary__label">
+              <span class="summary__dot summary__dot--borrowed"></span>
+              お支払い予定
+            </p>
+            <p class="summary__amount summary__amount--borrowed">¥3,200</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- クイックアクション -->
+      <section class="quick-actions">
+        <button class="quick-action" onclick="openModal('modal-advance')">
+          <div class="quick-action__icon quick-action__icon--advance">💸</div>
+          <span class="quick-action__label">立替を申請</span>
+        </button>
+        <button class="quick-action" onclick="openModal('modal-repayment')">
+          <div class="quick-action__icon quick-action__icon--repayment">💰</div>
+          <span class="quick-action__label">返済を記録</span>
+        </button>
+        <button class="quick-action" onclick="openModal('modal-offset')">
+          <div class="quick-action__icon quick-action__icon--offset">⚖️</div>
+          <span class="quick-action__label">相殺を提案</span>
+        </button>
+      </section>
+
+      <!-- 対応待ち -->
+      <section class="section">
+        <div class="section__header">
+          <h2 class="section__title">対応待ち<span class="section__badge">3</span></h2>
+          <button class="section__link">すべて見る</button>
+        </div>
+        <ul class="pending-list">
+          <li class="pending-item" onclick="openModal('modal-approve-advance')">
+            <div class="pending-item__icon pending-item__icon--advance">立</div>
+            <div class="pending-item__content">
+              <p class="pending-item__title">立替申請が届いています</p>
+              <p class="pending-item__desc">佐藤さんから ¥3,000</p>
+            </div>
+            <span class="pending-item__action">確認</span>
+          </li>
+          <li class="pending-item" onclick="openModal('modal-approve-offset')">
+            <div class="pending-item__icon pending-item__icon--offset">相</div>
+            <div class="pending-item__content">
+              <p class="pending-item__title">相殺の提案が届いています</p>
+              <p class="pending-item__desc">鈴木さんから</p>
+            </div>
+            <span class="pending-item__action">確認</span>
+          </li>
+          <li class="pending-item" onclick="openModal('modal-approve-friend')">
+            <div class="pending-item__icon pending-item__icon--friend">友</div>
+            <div class="pending-item__content">
+              <p class="pending-item__title">フレンド申請が届いています</p>
+              <p class="pending-item__desc">山本 太郎さんから</p>
+            </div>
+            <span class="pending-item__action">確認</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- フレンドとの残高 -->
+      <section class="section">
+        <div class="section__header">
+          <h2 class="section__title">フレンドとの残高</h2>
+          <button class="section__link">すべて見る</button>
+        </div>
+        <ul class="balance-list">
+          <li class="balance-item">
+            <div class="balance-item__avatar">佐</div>
+            <div class="balance-item__info">
+              <p class="balance-item__name">佐藤 花子</p>
+              <p class="balance-item__status balance-item__status--lent">あなたが貸しています</p>
+            </div>
+            <span class="balance-item__amount balance-item__amount--lent">¥6,000</span>
+            <span class="balance-item__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></span>
+          </li>
+          <li class="balance-item">
+            <div class="balance-item__avatar">鈴</div>
+            <div class="balance-item__info">
+              <p class="balance-item__name">鈴木 一郎</p>
+              <p class="balance-item__status balance-item__status--borrowed">あなたが借りています</p>
+            </div>
+            <span class="balance-item__amount balance-item__amount--borrowed">¥2,500</span>
+            <span class="balance-item__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></span>
+          </li>
+          <li class="balance-item">
+            <div class="balance-item__avatar">田</div>
+            <div class="balance-item__info">
+              <p class="balance-item__name">田中 美咲</p>
+              <p class="balance-item__status balance-item__status--lent">あなたが貸しています</p>
+            </div>
+            <span class="balance-item__amount balance-item__amount--lent">¥6,500</span>
+            <span class="balance-item__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></span>
+          </li>
+          <li class="balance-item balance-item--settled">
+            <div class="balance-item__avatar">高</div>
+            <div class="balance-item__info">
+              <p class="balance-item__name">高橋 健太</p>
+              <p class="balance-item__status balance-item__status--settled">清算済み</p>
+            </div>
+            <span class="balance-item__amount balance-item__amount--settled">¥0</span>
+            <span class="balance-item__arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ボトムナビ -->
+    <nav class="bottom-nav">
+      <button class="bottom-nav__item bottom-nav__item--active">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span class="bottom-nav__label">ホーム</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <span class="bottom-nav__label">立替</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+        <span class="bottom-nav__label">返済</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="bottom-nav__label">履歴</span>
+      </button>
+      <button class="bottom-nav__item">
+        <svg class="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span class="bottom-nav__label">フレンド</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- モーダル: 立替申請作成 -->
+  <div class="modal-overlay" id="modal-advance" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">立替を申請</h2>
+        <button class="modal__close" onclick="closeModal('modal-advance')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal__body">
+        <div class="form-group">
+          <label class="form-label">誰に立て替えた？</label>
+          <select class="form-select"><option value="">フレンドを選択</option><option>佐藤 花子</option><option>鈴木 一郎</option><option>田中 美咲</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">金額</label>
+          <div class="form-amount"><span class="form-amount__prefix">¥</span><input type="number" class="form-input" placeholder="0" min="1"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">日付</label>
+          <input type="date" class="form-input" value="2025-12-21">
+          <p class="form-hint">未来の日付は選択できません</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">メモ（任意）</label>
+          <input type="text" class="form-input" placeholder="例：ランチ代">
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-advance')">キャンセル</button>
+        <button class="btn btn--primary">申請する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 返済記録 -->
+  <div class="modal-overlay" id="modal-repayment" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">返済を記録</h2>
+        <button class="modal__close" onclick="closeModal('modal-repayment')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal__body">
+        <div class="form-group">
+          <label class="form-label">誰に返済した？</label>
+          <select class="form-select"><option value="">フレンドを選択</option><option>佐藤 花子（¥6,000 貸し）</option><option>鈴木 一郎（¥2,500 借り）</option><option>田中 美咲（¥6,500 貸し）</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">金額</label>
+          <div class="form-amount"><span class="form-amount__prefix">¥</span><input type="number" class="form-input" placeholder="0" min="1"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">日付</label>
+          <input type="date" class="form-input" value="2025-12-21">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メモ（任意）</label>
+          <input type="text" class="form-input" placeholder="例：ランチ代の返済">
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-repayment')">キャンセル</button>
+        <button class="btn btn--primary">記録する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺提案 -->
+  <div class="modal-overlay" id="modal-offset" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺を提案</h2>
+        <button class="modal__close" onclick="closeModal('modal-offset')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal__body">
+        <div class="form-group">
+          <label class="form-label">誰と相殺する？</label>
+          <select class="form-select" id="offset-select" onchange="toggleOffsetPreview()"><option value="">フレンドを選択</option><option value="suzuki">鈴木 一郎</option></select>
+          <p class="form-hint">お互いに貸し借りがあるフレンドのみ表示</p>
+        </div>
+        <div class="offset-preview" id="offset-preview" style="display:none;">
+          <p class="offset-preview__label">相殺可能額</p>
+          <p class="offset-preview__amount">¥2,500</p>
+          <p class="offset-preview__note">双方の残高から自動計算されます</p>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-offset')">キャンセル</button>
+        <button class="btn btn--primary">提案する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 立替申請の承認 -->
+  <div class="modal-overlay" id="modal-approve-advance" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">立替申請の確認</h2>
+        <button class="modal__close" onclick="closeModal('modal-approve-advance')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal__body">
+        <div class="confirm-card">
+          <div class="confirm-row"><span class="confirm-row__label">申請者</span><span class="confirm-row__value">佐藤 花子さん</span></div>
+          <div class="confirm-row"><span class="confirm-row__label">金額</span><span class="confirm-row__value confirm-row__value--amount">¥3,000</span></div>
+          <div class="confirm-row"><span class="confirm-row__label">日付</span><span class="confirm-row__value">2025/12/19</span></div>
+          <div class="confirm-row"><span class="confirm-row__label">メモ</span><span class="confirm-row__value">ランチ代</span></div>
+        </div>
+        <p class="confirm-note confirm-note--warning">承認すると、あなたの借りが<br><strong>¥3,000 増えます</strong></p>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--danger" onclick="closeModal('modal-approve-advance')">却下</button>
+        <button class="btn btn--primary">承認する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: 相殺申請の承認 -->
+  <div class="modal-overlay" id="modal-approve-offset" onclick="closeModalOnOverlay(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">相殺申請の確認</h2>
+        <button class="modal__close" onclick="closeModal('modal-approve-offset')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal__body">
+        <div class="confirm-card">
+          <div class="confirm-row"><span class="confirm-row__label">申請者</span><span class="confirm-row__value">鈴木 一郎さん</span></div>
+          <div class="confirm-row"><span class="confirm-row__label">相殺額</span><span class="confirm-row__value confirm-row__value--amount">¥2,500</span></div>
+        </div>
+        <div class="confirm-card" style="text-align:center;">
+          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;">相殺後の残高</p>
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
+            <span style="color:var(--color-borrowed);">¥2,500 借り</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span style="color:var(--color-lent);font-weight:600;">¥0 清算</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--danger" onclick="closeModal('modal-approve-offset')">却下</button>
+        <button class="btn btn--primary">承認する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モーダル: フレンド申請の承認 -->
+  <div class="modal-overlay" id="modal-approve-friend" onclick="closeModalOnOverlay(event)">
+    <div class="modal modal--center">
+      <div class="modal__header">
+        <h2 class="modal__title">フレンド申請</h2>
+        <button class="modal__close" onclick="closeModal('modal-approve-friend')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal__body modal__body--center">
+        <div class="user-card">
+          <div class="user-card__avatar">山</div>
+          <p class="user-card__name">山本 太郎</p>
+          <p class="user-card__id">@yamamoto_taro</p>
+        </div>
+        <p class="confirm-note">フレンドになりますか？</p>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn--secondary" onclick="closeModal('modal-approve-friend')">キャンセル</button>
+        <button class="btn btn--primary">承認する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
