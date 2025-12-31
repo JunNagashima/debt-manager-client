@@ -1,0 +1,333 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.form-input {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+
+  &:focus {
+    border-color: $color-primary;
+    background: $bg-card;
+  }
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+.form-textarea {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  resize: vertical;
+  min-height: 80px;
+  transition: all $transition-fast;
+
+  &:focus {
+    border-color: $color-primary;
+    background: $bg-card;
+  }
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+.form-select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%237D6E63' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.form-hint {
+  font-size: 11px;
+  color: $text-muted;
+  margin-top: $spacing-xs;
+}
+
+.form-static-text {
+  font-size: 15px;
+  color: $text-secondary;
+  padding: $spacing-sm 0;
+}
+
+.form-input-with-prefix {
+  display: flex;
+  align-items: center;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+
+  &__prefix {
+    padding: 0 $spacing-sm 0 $spacing-md;
+    font-size: 15px;
+    color: $text-muted;
+  }
+
+  .form-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+.profile-edit-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    border-radius: $border-radius-full;
+    background: linear-gradient(
+      135deg,
+      $color-accent-pink-light,
+      $color-accent-pink
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__btn {
+    font-size: 13px;
+    color: $color-primary;
+    font-weight: 500;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+}
+
+.radio-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $bg-secondary;
+  }
+
+  svg {
+    color: $text-secondary;
+  }
+
+  span:last-of-type {
+    margin-left: auto;
+  }
+
+  &--selected {
+    background: $color-primary-pale;
+
+    svg {
+      color: $color-primary;
+    }
+  }
+}
+
+.radio-item__check {
+  display: none;
+  color: $color-primary;
+  font-weight: 600;
+
+  .radio-item--selected & {
+    display: block;
+  }
+}
+
+.radio-buttons {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.radio-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-secondary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  input {
+    display: none;
+  }
+
+  &--active {
+    background: $color-primary-pale;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.export-desc {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $spacing-lg;
+  line-height: 1.6;
+}
+
+.confirm-note {
+  font-size: 14px;
+  color: $text-secondary;
+  text-align: center;
+  line-height: 1.7;
+  margin-bottom: $spacing-lg;
+}
+
+.danger-box {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-borrowed-light;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-lg;
+
+  svg {
+    color: $color-danger;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+}
+
+.danger-box__content {
+  flex: 1;
+}
+
+.danger-box__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-danger;
+  margin-bottom: $spacing-sm;
+}
+
+.danger-box__list {
+  font-size: 13px;
+  color: $text-secondary;
+  padding-left: $spacing-md;
+
+  li {
+    margin-bottom: 4px;
+    list-style: disc;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.form-footer {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.btn--secondary,
+.btn--primary,
+.btn--danger {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn--secondary {
+  background: $bg-secondary;
+  color: $text-primary;
+  border: 1px solid $border-color;
+
+  &:hover:not(:disabled) {
+    background: $border-color;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+
+  &:hover:not(:disabled) {
+    box-shadow: $shadow-md;
+  }
+}
+
+.btn--danger {
+  background: $color-danger;
+  color: $text-inverse;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}

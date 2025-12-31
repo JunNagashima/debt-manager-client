@@ -1,0 +1,103 @@
+@import '../../../../styles/variables';
+
+.form {
+  &__group {
+    margin-bottom: $spacing-md;
+  }
+
+  &__label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__select {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    font-size: 15px;
+    color: $text-primary;
+    background: $bg-secondary;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-md;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%237D6E63' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
+  }
+
+  &__hint {
+    font-size: 11px;
+    color: $text-muted;
+    margin-top: $spacing-xs;
+  }
+
+  &__footer {
+    display: flex;
+    gap: $spacing-sm;
+    margin-top: $spacing-lg;
+  }
+}
+
+.preview {
+  background: $color-primary-pale;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  text-align: center;
+  margin-bottom: $spacing-md;
+
+  &__label {
+    font-size: 12px;
+    color: $text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  &__note {
+    font-size: 11px;
+    color: $text-muted;
+    margin-top: $spacing-sm;
+  }
+}
+
+.btn__secondary,
+.btn__primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+}
+
+.btn__secondary {
+  background: $bg-secondary;
+  color: $text-primary;
+  border: 1px solid $border-color;
+
+  &:hover {
+    background: $border-color;
+  }
+}
+
+.btn__primary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+  border: none;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}

@@ -1,0 +1,158 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}
+
+.checkbox-item__label {
+  font-size: 14px;
+  color: $text-primary;
+}
+
+.form-select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%237D6E63' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.form-input {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+
+  &:focus {
+    border-color: $color-primary;
+    background: $bg-card;
+    outline: none;
+  }
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.date-range__separator {
+  color: $text-muted;
+  font-size: 14px;
+}
+
+.amount-range {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.amount-range__separator {
+  color: $text-muted;
+  font-size: 14px;
+}
+
+.form-amount {
+  position: relative;
+  flex: 1;
+}
+
+.form-amount__prefix {
+  position: absolute;
+  left: $spacing-md;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-secondary;
+}
+
+.form-amount .form-input {
+  padding-left: 32px;
+}
+
+.form-footer {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.btn--secondary,
+.btn--primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+}
+
+.btn--secondary {
+  background: $bg-secondary;
+  color: $text-primary;
+  border: 1px solid $border-color;
+
+  &:hover {
+    background: $border-color;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}

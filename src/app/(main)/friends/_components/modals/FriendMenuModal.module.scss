@@ -1,0 +1,43 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-list__item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $bg-secondary;
+  }
+
+  svg {
+    color: $text-secondary;
+    flex-shrink: 0;
+  }
+
+  &--danger {
+    color: $color-danger;
+
+    svg {
+      color: $color-danger;
+    }
+
+    &:hover {
+      background: $color-borrowed-light;
+    }
+  }
+}

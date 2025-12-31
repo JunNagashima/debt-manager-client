@@ -1,0 +1,33 @@
+@import '../../../../styles/variables';
+
+.filter-chips {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+  overflow-x: auto;
+  padding-bottom: $spacing-xs;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.filter-chip {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-full;
+  transition: all $transition-fast;
+  cursor: pointer;
+
+  &--active {
+    background: $color-primary-pale;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}

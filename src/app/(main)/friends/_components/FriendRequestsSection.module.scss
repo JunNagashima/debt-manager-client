@@ -1,0 +1,139 @@
+@import '../../../../styles/variables';
+
+.section {
+  margin-bottom: $spacing-lg;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.section__title {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.section__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: $color-accent-pink;
+  color: $text-inverse;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: $border-radius-full;
+  margin-left: $spacing-sm;
+}
+
+.friend-request-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.friend-request-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md;
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  border-left: 4px solid $color-accent-pink;
+
+  @media (min-width: 768px) {
+    flex: 1;
+    min-width: 280px;
+  }
+}
+
+.friend-request-card__user {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.friend-request-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(
+    135deg,
+    $color-accent-pink-light,
+    $color-accent-pink
+  );
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.friend-request-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-request-card__name {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.friend-request-card__id {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.friend-request-card__actions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.friend-request-card__btn {
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &--reject {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+
+    &:hover {
+      background: $color-borrowed;
+      color: $text-inverse;
+    }
+  }
+
+  &--accept {
+    background: $color-lent-light;
+    color: $color-lent;
+
+    &:hover {
+      background: $color-lent;
+      color: $text-inverse;
+    }
+  }
+}

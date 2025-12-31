@@ -1,0 +1,49 @@
+@import '../../../../styles/variables';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  height: $header-height;
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+  z-index: $z-index-header;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.header__title-center {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.header__btn--right {
+  position: absolute;
+  right: $spacing-md;
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-inverse;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.content {
+  padding: $spacing-md;
+  padding-top: calc($header-height + $spacing-md);
+  padding-bottom: calc($bottom-nav-height + $spacing-xl);
+}

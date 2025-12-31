@@ -1,0 +1,35 @@
+@import '../../../../styles/variables';
+
+.fab {
+  position: fixed;
+  bottom: calc($bottom-nav-height + $spacing-lg);
+  right: $spacing-lg;
+  width: 56px;
+  height: 56px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+  box-shadow: 0 10px 20px rgba(107, 83, 68, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(107, 83, 68, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (min-width: 1024px) {
+  .fab {
+    right: calc(50% - 400px + $spacing-lg);
+  }
+}

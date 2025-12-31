@@ -1,0 +1,79 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $border-radius-md;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+  font-family: inherit;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // サイズバリエーション
+  &--sm {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+  }
+
+  &--md {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-md;
+  }
+
+  &--lg {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  // カラーバリエーション
+  &--primary {
+    background-color: $color-primary;
+    color: $text-inverse;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary-dark;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-secondary;
+    color: $text-inverse;
+
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+  }
+
+  &--danger {
+    background-color: $color-danger;
+    color: $text-inverse;
+
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary;
+      color: $text-inverse;
+    }
+  }
+
+  // 幅
+  &--full-width {
+    width: 100%;
+  }
+}

@@ -1,0 +1,174 @@
+@import '../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.confirm-card {
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.confirm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.confirm-row__label {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.confirm-row__value {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+
+  &--amount {
+    font-size: 18px;
+    color: $color-primary;
+  }
+}
+
+.confirm-note {
+  font-size: 13px;
+  color: $text-secondary;
+  text-align: center;
+  line-height: 1.7;
+  margin-bottom: $spacing-md;
+
+  &--warning {
+    color: $color-borrowed;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.offset-result {
+  text-align: center;
+  padding: $spacing-sm 0;
+}
+
+.offset-result__label {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.offset-result__flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+
+  svg {
+    color: $text-muted;
+  }
+}
+
+.offset-result__before {
+  color: $color-borrowed;
+}
+
+.offset-result__after {
+  color: $color-lent;
+  font-weight: 600;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-lg;
+}
+
+.user-card__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(
+    135deg,
+    $color-accent-pink-light,
+    $color-accent-pink
+  );
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: $spacing-md;
+}
+
+.user-card__name {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.user-card__id {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.footer {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+  flex: 1;
+  min-height: 48px;
+  border: none;
+  cursor: pointer;
+
+  &--primary {
+    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+    color: $text-inverse;
+
+    &:hover {
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &--secondary {
+    background: $bg-secondary;
+    color: $text-primary;
+    border: 1px solid $border-color;
+
+    &:hover {
+      background: $border-color;
+    }
+  }
+
+  &--danger {
+    background: $color-danger;
+    color: $text-inverse;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

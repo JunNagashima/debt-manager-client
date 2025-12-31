@@ -1,0 +1,22 @@
+@import '../../../../styles/variables';
+
+.section {
+  margin-bottom: $spacing-lg;
+}
+
+.section__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: $spacing-sm;
+  padding-left: $spacing-sm;
+}
+
+.settings-list {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+}

@@ -1,0 +1,166 @@
+@import '../../../../styles/variables';
+
+.history-list {
+  margin-bottom: $spacing-md;
+}
+
+.history-group {
+  margin-bottom: $spacing-lg;
+}
+
+.history-group__date {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-sm;
+}
+
+.history-group__day {
+  font-size: 24px;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.history-group__weekday {
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-muted;
+}
+
+.history-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+
+  &--rejected {
+    opacity: 0.6;
+  }
+}
+
+.history-item__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: $border-radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &--advance-out {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--advance-in {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+
+  &--repayment-in {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--repayment-out {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+
+  &--offset {
+    background: $color-primary-pale;
+    color: $color-primary;
+  }
+
+  &--rejected {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+}
+
+.history-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-item__main {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-bottom: 2px;
+}
+
+.history-item__type {
+  font-size: 11px;
+  font-weight: 500;
+  color: $text-muted;
+}
+
+.history-item__user {
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.history-item__memo {
+  font-size: 13px;
+  color: $text-secondary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-item__status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: $border-radius-full;
+  margin-top: $spacing-xs;
+
+  &--pending {
+    background: $color-warning-light;
+    color: $color-warning;
+  }
+
+  &--confirmed {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--rejected {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+}
+
+.history-item__amount {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  flex-shrink: 0;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+}

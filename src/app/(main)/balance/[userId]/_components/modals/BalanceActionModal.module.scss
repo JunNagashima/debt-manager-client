@@ -1,0 +1,143 @@
+@import '../../../../../../styles/variables';
+
+.form {
+  &__group {
+    margin-bottom: $spacing-md;
+  }
+
+  &__label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    font-size: 15px;
+    color: $text-primary;
+    background: $bg-secondary;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-md;
+    transition: all $transition-fast;
+
+    &:focus {
+      border-color: $color-primary;
+      background: $bg-card;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $text-muted;
+    }
+  }
+
+  &__amount {
+    position: relative;
+  }
+
+  &__prefix {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-secondary;
+  }
+
+  &__amount .form__input {
+    padding-left: 36px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  &__hint {
+    font-size: 11px;
+    color: $text-muted;
+    margin-top: $spacing-xs;
+  }
+
+  &__footer {
+    display: flex;
+    gap: $spacing-sm;
+    margin-top: $spacing-lg;
+  }
+}
+
+.form-static {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+}
+
+.form-static__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(135deg, $color-secondary-light, $color-secondary);
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.form-static__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-static__name {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.form-static__balance {
+  font-size: 12px;
+  color: $color-lent;
+}
+
+.btn--secondary,
+.btn--primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+}
+
+.btn--secondary {
+  background: $bg-secondary;
+  color: $text-primary;
+  border: 1px solid $border-color;
+
+  &:hover {
+    background: $border-color;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}

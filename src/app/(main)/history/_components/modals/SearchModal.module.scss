@@ -1,0 +1,73 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-lg;
+
+  svg {
+    color: $text-muted;
+    flex-shrink: 0;
+  }
+}
+
+.search-box__input {
+  flex: 1;
+  font-size: 15px;
+  color: $text-primary;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+.search-recent {
+  // スタイル不要
+}
+
+.search-recent__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.search-recent__list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.search-recent__item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  font-size: 14px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $border-color;
+  }
+
+  svg {
+    color: $text-muted;
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+
+  &__section-title {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__stats {
+    // スタイル不要
+  }
+
+  &__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-lg;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__quick-actions {
+    // スタイル不要
+  }
+
+  &__recent {
+    // スタイル不要
+  }
+}

@@ -1,0 +1,270 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.add-friend-tabs {
+  display: flex;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: 4px;
+  margin-bottom: $spacing-lg;
+}
+
+.add-friend-tabs__item {
+  flex: 1;
+  padding: $spacing-sm;
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-secondary;
+  border-radius: $border-radius-sm;
+  text-align: center;
+  transition: all $transition-fast;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &--active {
+    background: $bg-card;
+    color: $text-primary;
+    box-shadow: $shadow-sm;
+  }
+}
+
+.add-friend-content {
+  // スタイル不要
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+}
+
+.search-input-group__prefix {
+  padding: 0 $spacing-sm 0 $spacing-md;
+  font-size: 15px;
+  color: $text-muted;
+}
+
+.form-input {
+  flex: 1;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+.search-input-group__btn {
+  padding: $spacing-sm $spacing-md;
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-inverse;
+  background: $color-primary;
+  transition: background $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+.search-result {
+  margin-top: $spacing-lg;
+}
+
+.search-result__card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $bg-secondary;
+  border-radius: $border-radius-lg;
+}
+
+.search-result__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(
+    135deg,
+    $color-secondary-light,
+    $color-secondary
+  );
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.search-result__info {
+  flex: 1;
+}
+
+.search-result__name {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.search-result__id {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.search-result__btn {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-inverse;
+  background: $color-primary;
+  border-radius: $border-radius-md;
+  transition: background $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+.search-result-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xl;
+  color: $text-muted;
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+
+  svg {
+    opacity: 0.5;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.qr-section {
+  text-align: center;
+  padding: $spacing-lg 0;
+}
+
+.qr-section__title {
+  font-size: 13px;
+  color: $text-secondary;
+  margin-bottom: $spacing-md;
+}
+
+.qr-section__code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.qr-placeholder {
+  width: 160px;
+  height: 160px;
+  background: $bg-secondary;
+  border-radius: $border-radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+}
+
+.qr-section__id {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.qr-section__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: $color-primary;
+  background: $color-primary-pale;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-primary;
+    color: $text-inverse;
+  }
+}
+
+.qr-divider {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin: $spacing-lg 0;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $border-color;
+  }
+
+  span {
+    font-size: 12px;
+    color: $text-muted;
+  }
+}
+
+.qr-scan-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-md;
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  transition: all $transition-fast;
+  cursor: pointer;
+
+  &:hover {
+    background: $border-color;
+  }
+}

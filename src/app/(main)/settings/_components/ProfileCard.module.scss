@@ -1,0 +1,80 @@
+@import '../../../../styles/variables';
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: $bg-card;
+  border-radius: $border-radius-xl;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(74, 63, 53, 0.12);
+  }
+}
+
+.profile-card__avatar {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(
+    135deg,
+    $color-accent-pink-light,
+    $color-accent-pink
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-card__avatar-text {
+  font-size: 28px;
+}
+
+.profile-card__avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: $border-radius-full;
+  background: $color-primary;
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $bg-card;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+.profile-card__info {
+  flex: 1;
+}
+
+.profile-card__name {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 2px;
+}
+
+.profile-card__id {
+  font-size: 13px;
+  color: $text-muted;
+}
+
+.profile-card__arrow {
+  color: $text-muted;
+  flex-shrink: 0;
+}

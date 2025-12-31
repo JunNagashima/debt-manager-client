@@ -1,0 +1,97 @@
+// カラー定義（わりかんノート）
+$color-primary: #8B7355;
+$color-primary-dark: #6B5344;
+$color-primary-light: #A68B7B;
+$color-primary-pale: #F5EDE8;
+$color-secondary: #C4A77D;
+$color-secondary-light: #E5D4B8;
+
+$color-accent-pink: #E8B4B8;
+$color-accent-pink-light: #FDF2F3;
+
+$color-lent: #6B9B7A;
+$color-lent-light: #EDF5EF;
+$color-borrowed: #C98B8B;
+$color-borrowed-light: #FDF2F2;
+
+$color-warning: #D4A55A;
+$color-warning-light: #FDF8EE;
+$color-danger: #C97B7B;
+
+// 追加: 成功・情報カラー
+$color-success: #6B9B7A;
+$color-info: #50e3c2;
+
+// 背景色
+$bg-primary: #FFFBF8;
+$bg-secondary: #F9F5F2;
+$bg-card: #FFFFFF;
+$bg-dark: #343a40;
+$bg-overlay: rgba(74, 63, 53, 0.4);
+
+// テキスト色
+$text-primary: #4A3F35;
+$text-secondary: #7D6E63;
+$text-muted: #A99D94;
+$text-inverse: #FFFFFF;
+$text-light: #999999;
+
+// ボーダー
+$border-color: #EDE6E0;
+$border-color-light: #F0EBE6;
+
+// シャドウ
+$shadow-sm: 0 1px 3px rgba(74, 63, 53, 0.06);
+$shadow-md: 0 4px 16px rgba(74, 63, 53, 0.08);
+$shadow-lg: 0 10px 20px rgba(74, 63, 53, 0.15);
+
+// ボーダー半径
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+$border-radius-full: 9999px;
+
+// スペーシング
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// フォント
+$font-family: 'Zen Maru Gothic', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-size-xs: 11px;
+$font-size-sm: 12px;
+$font-size-md: 15px;
+$font-size-lg: 17px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-xxxl: 28px;
+$font-size-huge: 32px;
+
+// レイアウト
+$header-height: 64px;
+$bottom-nav-height: 72px;
+$max-width-mobile: 480px;
+$max-width-tablet: 768px;
+$max-width-desktop: 1024px;
+$max-width-wide: 1280px;
+
+// ブレークポイント
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1280px;
+
+// トランジション
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// z-index
+$z-index-header: 100;
+$z-index-dropdown: 1000;
+$z-index-modal: 1050;
+$z-index-tooltip: 1100;

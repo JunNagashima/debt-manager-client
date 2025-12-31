@@ -1,0 +1,60 @@
+@import '../../../../styles/variables';
+
+.history-filters {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.filter-chips {
+  flex: 1;
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+  padding-bottom: $spacing-xs;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.filter-chip {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-full;
+  transition: all $transition-fast;
+  cursor: pointer;
+
+  &--active {
+    background: $color-primary-pale;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.filter-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: $border-radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-secondary;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  transition: all $transition-fast;
+  cursor: pointer;
+
+  &:hover {
+    background: $bg-secondary;
+    color: $text-primary;
+  }
+}

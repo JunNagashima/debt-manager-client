@@ -1,0 +1,82 @@
+@import '../../../styles/variables';
+
+.summary {
+  background: $bg-card;
+  border-radius: $border-radius-xl;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-md;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    text-align: center;
+    margin-bottom: $spacing-md;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $border-radius-full;
+
+    &--lent {
+      background: $color-lent;
+    }
+
+    &--borrowed {
+      background: $color-borrowed;
+    }
+  }
+
+  &__amount {
+    font-size: $font-size-xxl;
+    font-weight: 700;
+
+    &--lent {
+      color: $color-lent;
+    }
+
+    &--borrowed {
+      color: $color-borrowed;
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 48px;
+    background: $border-color;
+  }
+}

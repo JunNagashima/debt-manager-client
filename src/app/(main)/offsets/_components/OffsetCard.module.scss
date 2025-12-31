@@ -1,0 +1,165 @@
+@import '../../../../styles/variables';
+
+.offset-card {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border-left: 4px solid transparent;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+
+  &--pending {
+    border-left-color: $color-warning;
+  }
+
+  &--rejected {
+    opacity: 0.6;
+  }
+}
+
+.offset-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-md;
+}
+
+.offset-card__user {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.offset-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(135deg, $color-secondary-light, $color-secondary);
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.offset-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.offset-card__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.offset-card__date {
+  font-size: 11px;
+  color: $text-muted;
+}
+
+.offset-card__status {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: $border-radius-full;
+
+  &--pending {
+    background: $color-warning-light;
+    color: $color-warning;
+  }
+
+  &--approved {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--rejected {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+}
+
+.offset-card__body {
+  margin-bottom: $spacing-sm;
+}
+
+.offset-card__amount {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.offset-card__amount-label {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.offset-card__amount-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.offset-card__preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+
+  svg {
+    color: $text-muted;
+    flex-shrink: 0;
+  }
+}
+
+.offset-card__before,
+.offset-card__after {
+  text-align: center;
+}
+
+.offset-card__preview-label {
+  display: block;
+  font-size: 10px;
+  color: $text-muted;
+  margin-bottom: 2px;
+}
+
+.offset-card__preview-value {
+  font-size: 12px;
+  font-weight: 600;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+
+  &--settled {
+    color: $text-muted;
+  }
+}
+
+.offset-card__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.offset-card__action {
+  font-size: 12px;
+  color: $color-primary;
+  font-weight: 500;
+}

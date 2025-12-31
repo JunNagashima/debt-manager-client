@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.app {
+  max-width: $max-width-mobile;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: $bg-primary;
+  position: relative;
+
+  @include desktop {
+    max-width: none;
+  }
+}
+
+.main {
+  padding: $spacing-md;
+  padding-top: calc($header-height + $spacing-md);
+  padding-bottom: calc($bottom-nav-height + $spacing-xl);
+
+  @include desktop {
+    padding-top: calc($header-height + $spacing-xl);
+    padding-left: calc(260px + $spacing-xl);
+    max-width: calc(800px + 260px + $spacing-xl * 2);
+    margin: 0 auto;
+  }
+}

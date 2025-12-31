@@ -1,0 +1,89 @@
+@import '../../../../styles/variables';
+
+.repayment-summary {
+  display: flex;
+  align-items: center;
+  background: $bg-card;
+  border-radius: $border-radius-xl;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-md;
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.repayment-summary__item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  @media (max-width: 375px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.repayment-summary__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: $border-radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &--received {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--paid {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+}
+
+.repayment-summary__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.repayment-summary__label {
+  font-size: 11px;
+  color: $text-muted;
+  margin-bottom: 2px;
+}
+
+.repayment-summary__amount {
+  font-size: 20px;
+  font-weight: 700;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+.repayment-summary__divider {
+  width: 1px;
+  height: 40px;
+  background: $border-color;
+  margin: 0 $spacing-md;
+
+  @media (max-width: 375px) {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+  }
+}

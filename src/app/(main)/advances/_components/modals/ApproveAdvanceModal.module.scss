@@ -1,0 +1,116 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.confirm-card {
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.confirm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.confirm-row__label {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.confirm-row__value {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+
+  &--amount {
+    font-size: 18px;
+    color: $color-primary;
+  }
+}
+
+.impact-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-warning-light;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-md;
+
+  svg {
+    color: $color-warning;
+    flex-shrink: 0;
+  }
+}
+
+.impact-notice__content {
+  flex: 1;
+}
+
+.impact-notice__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 2px;
+}
+
+.impact-notice__desc {
+  font-size: 13px;
+  color: $text-secondary;
+
+  strong {
+    font-weight: 700;
+    color: $color-borrowed;
+  }
+}
+
+.footer {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.btn--danger,
+.btn--primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+}
+
+.btn--danger {
+  background: $color-danger;
+  color: $text-inverse;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}

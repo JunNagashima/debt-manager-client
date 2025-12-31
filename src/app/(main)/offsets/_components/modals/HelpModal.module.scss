@@ -1,0 +1,92 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.help-content {
+  margin-bottom: $spacing-lg;
+}
+
+.help-item {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.help-item__icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.help-item__text {
+  flex: 1;
+}
+
+.help-item__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 2px;
+}
+
+.help-item__desc {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.5;
+}
+
+.help-example {
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.help-example__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.help-example__text {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.6;
+  margin-bottom: $spacing-sm;
+}
+
+.help-example__result {
+  font-size: 14px;
+  color: $color-primary;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.btn--primary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}

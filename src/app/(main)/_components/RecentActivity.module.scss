@@ -1,0 +1,81 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.recent-activity {
+  background-color: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md;
+    border-radius: $border-radius-md;
+    border-left: 4px solid $border-color;
+    background-color: $bg-secondary;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      box-shadow: $shadow-sm;
+      transform: translateX(4px);
+    }
+
+    &--payment {
+      border-left-color: $color-success;
+    }
+
+    &--debt {
+      border-left-color: $color-warning;
+    }
+
+    &--update {
+      border-left-color: $color-info;
+    }
+  }
+
+  &__icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: $font-size-md;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 $spacing-xs 0;
+    @include text-truncate;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    margin: 0 0 $spacing-xs 0;
+    @include text-truncate;
+  }
+
+  &__date {
+    font-size: $font-size-xs;
+    color: $text-light;
+  }
+
+  &__amount {
+    font-size: $font-size-md;
+    font-weight: 700;
+    color: $text-primary;
+    flex-shrink: 0;
+  }
+}

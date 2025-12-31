@@ -1,0 +1,124 @@
+@import '../../../styles/variables';
+
+.section {
+  margin-bottom: $spacing-lg;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: $font-size-md;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__link {
+    font-size: 13px;
+    color: $color-primary;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.balance-list {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+}
+
+.balance-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: $bg-secondary;
+  }
+
+  &--settled {
+    opacity: 0.5;
+  }
+
+  &__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: $border-radius-full;
+    background: linear-gradient(
+      135deg,
+      $color-secondary-light,
+      $color-secondary
+    );
+    color: $text-inverse;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: $font-size-md;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-primary;
+    margin-bottom: 2px;
+  }
+
+  &__status {
+    font-size: $font-size-xs;
+
+    &--lent {
+      color: $color-lent;
+    }
+
+    &--borrowed {
+      color: $color-borrowed;
+    }
+
+    &--settled {
+      color: $text-muted;
+    }
+  }
+
+  &__amount {
+    font-size: 16px;
+    font-weight: 600;
+    flex-shrink: 0;
+
+    &--lent {
+      color: $color-lent;
+    }
+
+    &--borrowed {
+      color: $color-borrowed;
+    }
+
+    &--settled {
+      color: $text-muted;
+    }
+  }
+
+  &__arrow {
+    color: $text-muted;
+  }
+}

@@ -1,0 +1,84 @@
+@import '../../../../../styles/variables';
+
+.section {
+  margin-bottom: $spacing-lg;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.section__title {
+  font-size: $font-size-md;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.breakdown-card {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: 14px;
+    color: $text-secondary;
+  }
+
+  &__value {
+    font-size: 16px;
+    font-weight: 600;
+
+    &--lent {
+      color: $color-lent;
+    }
+
+    &--borrowed {
+      color: $color-borrowed;
+    }
+  }
+
+  &--total {
+    .breakdown-row__label {
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    .breakdown-row__value {
+      font-size: 18px;
+    }
+  }
+}
+
+.breakdown-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: $border-radius-full;
+
+  &--lent {
+    background: $color-lent;
+  }
+
+  &--borrowed {
+    background: $color-borrowed;
+  }
+}
+
+.breakdown-divider {
+  height: 1px;
+  background: $border-color;
+  margin: $spacing-sm 0;
+}

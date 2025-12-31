@@ -1,0 +1,32 @@
+@import '../../../../styles/variables';
+
+.month-total {
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  margin-top: $spacing-lg;
+}
+
+.month-total__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-total__label {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.month-total__value {
+  font-size: 18px;
+  font-weight: 700;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+}

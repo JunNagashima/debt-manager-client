@@ -1,0 +1,203 @@
+@import '../../../../../styles/variables';
+
+.modal {
+  // スタイル不要（Modalコンポーネント内で管理）
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.form-static {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+}
+
+.form-static__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(135deg, $color-secondary-light, $color-secondary);
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.form-static__name {
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.offset-info {
+  margin-bottom: $spacing-lg;
+}
+
+.offset-info__card {
+  background: $color-primary-pale;
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+  text-align: center;
+}
+
+.offset-info__label {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.offset-info__amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.offset-breakdown {
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.offset-breakdown__title {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.offset-breakdown__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-xs 0;
+}
+
+.offset-breakdown__label {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.offset-breakdown__value {
+  font-size: 14px;
+  font-weight: 500;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+}
+
+.offset-result {
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+.offset-result__title {
+  font-size: 12px;
+  color: $text-secondary;
+  text-align: center;
+  margin-bottom: $spacing-md;
+}
+
+.offset-result__change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+
+  svg {
+    color: $text-muted;
+    flex-shrink: 0;
+  }
+}
+
+.offset-result__before,
+.offset-result__after {
+  text-align: center;
+}
+
+.offset-result__label {
+  display: block;
+  font-size: 11px;
+  color: $text-muted;
+  margin-bottom: $spacing-xs;
+}
+
+.offset-result__value {
+  font-size: 14px;
+  font-weight: 600;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+
+  &--settled {
+    color: $text-muted;
+  }
+}
+
+.form-footer {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.btn--secondary,
+.btn--primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  min-height: 48px;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+}
+
+.btn--secondary {
+  background: $bg-secondary;
+  color: $text-primary;
+  border: 1px solid $border-color;
+
+  &:hover {
+    background: $border-color;
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}

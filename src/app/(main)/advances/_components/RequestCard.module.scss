@@ -1,0 +1,141 @@
+@import '../../../../styles/variables';
+
+.request-card {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border-left: 4px solid transparent;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+
+  &--pending {
+    border-left-color: $color-warning;
+  }
+
+  &--rejected {
+    opacity: 0.6;
+  }
+}
+
+.request-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-sm;
+}
+
+.request-card__user {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.request-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(135deg, $color-secondary-light, $color-secondary);
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.request-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.request-card__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.request-card__date {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.request-card__amount {
+  font-size: 20px;
+  font-weight: 700;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+}
+
+.request-card__body {
+  margin-bottom: $spacing-sm;
+}
+
+.request-card__memo {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.request-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.request-card__status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: $border-radius-full;
+
+  &--pending {
+    background: $color-warning-light;
+    color: $color-warning;
+  }
+
+  &--approved {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--rejected {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+}
+
+.request-card__action {
+  font-size: 12px;
+  color: $color-primary;
+  font-weight: 500;
+}
+
+.request-card__approved-date {
+  font-size: 11px;
+  color: $text-muted;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+  text-align: center;
+}
+
+.empty-state__text {
+  font-size: 14px;
+  color: $text-muted;
+}

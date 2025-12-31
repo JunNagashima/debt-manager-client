@@ -1,0 +1,122 @@
+@import '../../../../styles/variables';
+
+.repayment-card {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.repayment-card__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+}
+
+.repayment-card__user {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.repayment-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(135deg, $color-secondary-light, $color-secondary);
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.repayment-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.repayment-card__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.repayment-card__date {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.repayment-card__amount {
+  text-align: right;
+}
+
+.repayment-card__direction {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.repayment-card__amount--received {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-lent;
+
+  .repayment-card__direction {
+    color: $color-lent;
+  }
+}
+
+.repayment-card__amount--paid {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-borrowed;
+
+  .repayment-card__direction {
+    color: $color-borrowed;
+  }
+}
+
+.repayment-card__detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $border-color;
+}
+
+.repayment-card__memo {
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.repayment-card__balance {
+  font-size: 11px;
+  color: $text-muted;
+}
+
+.repayment-card__balance-value {
+  font-weight: 500;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+
+  &--settled {
+    color: $text-muted;
+  }
+}

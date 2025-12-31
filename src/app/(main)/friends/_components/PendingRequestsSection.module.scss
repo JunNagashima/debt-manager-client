@@ -1,0 +1,118 @@
+@import '../../../../styles/variables';
+
+.section {
+  margin-bottom: $spacing-lg;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.section__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.section__count {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.friend-pending-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.friend-pending-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md;
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+
+  @media (min-width: 768px) {
+    flex: 1;
+    min-width: 280px;
+  }
+}
+
+.friend-pending-card__user {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.friend-pending-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: $border-radius-full;
+  background: linear-gradient(
+    135deg,
+    $color-secondary-light,
+    $color-secondary
+  );
+  color: $text-inverse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.friend-pending-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-pending-card__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.friend-pending-card__id {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.friend-pending-card__status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.friend-pending-card__badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  background: $color-warning-light;
+  color: $color-warning;
+  border-radius: $border-radius-full;
+}
+
+.friend-pending-card__cancel {
+  font-size: 12px;
+  color: $text-muted;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-danger;
+  }
+}

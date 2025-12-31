@@ -1,0 +1,163 @@
+@import '../../../../../styles/variables';
+
+.timeline {
+  margin-bottom: $spacing-md;
+}
+
+.timeline__group {
+  margin-bottom: $spacing-lg;
+}
+
+.timeline__date {
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-secondary;
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-sm;
+}
+
+.timeline__list {
+  position: relative;
+  padding-left: 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: $border-color;
+  }
+}
+
+.timeline__item {
+  position: relative;
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.timeline__dot {
+  position: absolute;
+  left: -20px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: $border-radius-full;
+  background: $color-primary;
+  border: 2px solid $bg-primary;
+}
+
+.timeline__item--advance-out .timeline__dot {
+  background: $color-lent;
+}
+
+.timeline__item--advance-in .timeline__dot {
+  background: $color-borrowed;
+}
+
+.timeline__item--repayment-in .timeline__dot {
+  background: $color-lent;
+}
+
+.timeline__item--repayment-out .timeline__dot {
+  background: $color-borrowed;
+}
+
+.timeline__content {
+  background: $bg-card;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+  transition: box-shadow $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.timeline__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xs;
+}
+
+.timeline__type {
+  font-size: 11px;
+  font-weight: 500;
+  color: $text-muted;
+}
+
+.timeline__time {
+  font-size: 11px;
+  color: $text-muted;
+}
+
+.timeline__desc {
+  font-size: 14px;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.timeline__amount {
+  font-size: 18px;
+  font-weight: 600;
+
+  &--lent {
+    color: $color-lent;
+  }
+
+  &--borrowed {
+    color: $color-borrowed;
+  }
+}
+
+.timeline__status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: $border-radius-full;
+  margin-top: $spacing-xs;
+
+  &--pending {
+    background: $color-warning-light;
+    color: $color-warning;
+  }
+
+  &--confirmed {
+    background: $color-lent-light;
+    color: $color-lent;
+  }
+
+  &--rejected {
+    background: $color-borrowed-light;
+    color: $color-borrowed;
+  }
+}
+
+.btn-load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-md;
+  font-size: 14px;
+  color: $text-secondary;
+  background: $bg-secondary;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $border-color;
+    color: $text-primary;
+  }
+}

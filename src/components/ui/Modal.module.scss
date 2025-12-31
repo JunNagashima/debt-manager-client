@@ -1,0 +1,91 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-center;
+  z-index: $z-index-modal;
+  padding: $spacing-lg;
+  animation: fadeIn $transition-fast;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    background-color: $bg-card;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-lg;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp $transition-normal;
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    &--sm {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    &--md {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    &--lg {
+      width: 100%;
+      max-width: 900px;
+    }
+  }
+
+  &__header {
+    @include flex-between;
+    padding: $spacing-lg;
+    border-bottom: 1px solid $border-color-light;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: $font-size-xl;
+    color: $text-secondary;
+    cursor: pointer;
+    padding: $spacing-xs;
+    transition: color $transition-fast;
+    line-height: 1;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  &__body {
+    padding: $spacing-lg;
+  }
+}

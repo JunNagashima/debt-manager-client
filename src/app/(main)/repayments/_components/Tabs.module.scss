@@ -1,0 +1,30 @@
+@import '../../../../styles/variables';
+
+.tabs {
+  display: flex;
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  padding: 4px;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.tabs__item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-secondary;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+  border: none;
+  cursor: pointer;
+
+  &--active {
+    background: $color-primary;
+    color: $text-inverse;
+  }
+}
