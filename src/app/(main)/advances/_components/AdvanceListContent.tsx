@@ -13,6 +13,11 @@ import styles from './AdvanceListContent.module.scss';
 type TabType = 'received' | 'sent';
 type FilterType = 'all' | 'pending' | 'approved' | 'rejected';
 
+interface FriendOption {
+  value: string;
+  text: string;
+}
+
 // モーダル用のデータ型
 interface DetailModalState {
   isOpen: boolean;
@@ -28,7 +33,13 @@ interface DetailModalState {
   };
 }
 
-export const AdvanceListContent: React.FC = () => {
+interface AdvanceListContentProps {
+  friendOptions: FriendOption[];
+}
+
+export const AdvanceListContent: React.FC<AdvanceListContentProps> = ({
+  friendOptions,
+}) => {
   const [activeTab, setActiveTab] = useState<TabType>('received');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [isCreateOpen, setIsCreateOpen] = useState(false);
@@ -178,6 +189,7 @@ export const AdvanceListContent: React.FC = () => {
       <AdvanceFormModal
         isOpen={isCreateOpen}
         onClose={() => setIsCreateOpen(false)}
+        friendOptions={friendOptions}
       />
 
       <AdvanceDetailModal

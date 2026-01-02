@@ -1,7 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Modal } from '@/components/ui/Modal';
+import { advanceFormSchema, type AdvanceFormData } from './schemas/advanceFormSchema';
 import styles from './AdvanceFormModal.module.scss';
 
 interface Friend {
@@ -10,54 +13,81 @@ interface Friend {
   avatar: string;
 }
 
+interface FriendOption {
+  value: string;
+  text: string;
+}
+
 interface AdvanceFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  friend?: Friend; // 指定された場合は固定表示、未指定の場合は選択式
+  friend?: Friend;
+  friendOptions?: FriendOption[];
 }
 
 export const AdvanceFormModal: React.FC<AdvanceFormModalProps> = ({
   isOpen,
   onClose,
   friend,
+  friendOptions,
 }) => {
-  const [friendId, setFriendId] = useState('');
-  const [amount, setAmount] = useState('');
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-  const [note, setNote] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<AdvanceFormData>({
+    resolver: zodResolver(advanceFormSchema),
+    defaultValues: {
+      friendId: friend?.id || '',
+      amount: '',
+      date: new Date().toISOString().split('T')[0],
+      note: '',
+    },
+  });
 
-  const handleSubmit = () => {
-    const data = friend
-      ? { friendId: friend.id, amount, date, note }
-      : { friendId, amount, date, note };
+  const onSubmit = (data: AdvanceFormData) => {
     console.log('立替申請:', data);
+    reset();
+    onClose();
+  };
+
+  const handleClose = () => {
+    reset();
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="立替を申請">
-      <div className={styles.form}>
+    <Modal isOpen={isOpen} onClose={handleClose} title="立替を申請">
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.form__group}>
           <label className={styles.form__label}>
             {friend ? '相手' : '誰に立て替えた？'}
           </label>
-          {friend ? (
+          {friend && (
             <div className={styles['form-static']}>
               <div className={styles['form-static__avatar']}>{friend.avatar}</div>
               <span className={styles['form-static__name']}>{friend.name}</span>
+              <input type="hidden" {...register('friendId')} value={friend.id} />
             </div>
-          ) : (
-            <select
-              className={styles.form__select}
-              value={friendId}
-              onChange={(e) => setFriendId(e.target.value)}
-            >
-              <option value="">フレンドを選択</option>
-              <option value="1">佐藤 花子</option>
-              <option value="2">鈴木 一郎</option>
-              <option value="3">田中 美咲</option>
-              <option value="4">高橋 健太</option>
-            </select>
+          )}
+          {friendOptions && (
+            <>
+              <select
+                className={styles.form__select}
+                {...register('friendId')}
+              >
+                <option value="">フレンドを選択</option>
+                {friendOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.text}
+                  </option>
+                ))}
+              </select>
+              {errors.friendId && (
+                <p className={styles.form__error}>{errors.friendId.message}</p>
+              )}
+            </>
           )}
         </div>
 
@@ -70,10 +100,12 @@ export const AdvanceFormModal: React.FC<AdvanceFormModalProps> = ({
               className={styles.form__input}
               placeholder="0"
               min="1"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              {...register('amount')}
             />
           </div>
+          {errors.amount && (
+            <p className={styles.form__error}>{errors.amount.message}</p>
+          )}
         </div>
 
         <div className={styles.form__group}>
@@ -81,11 +113,14 @@ export const AdvanceFormModal: React.FC<AdvanceFormModalProps> = ({
           <input
             type="date"
             className={styles.form__input}
-            value={date}
             max={new Date().toISOString().split('T')[0]}
-            onChange={(e) => setDate(e.target.value)}
+            {...register('date')}
           />
-          <p className={styles.form__hint}>未来の日付は選択できません</p>
+          {errors.date ? (
+            <p className={styles.form__error}>{errors.date.message}</p>
+          ) : (
+            <p className={styles.form__hint}>未来の日付は選択できません</p>
+          )}
         </div>
 
         <div className={styles.form__group}>
@@ -94,20 +129,23 @@ export const AdvanceFormModal: React.FC<AdvanceFormModalProps> = ({
             type="text"
             className={styles.form__input}
             placeholder="例：ランチ代"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
+            {...register('note')}
           />
         </div>
 
         <div className={styles.form__footer}>
-          <button className={styles['btn--secondary']} onClick={onClose}>
+          <button
+            type="button"
+            className={styles['btn--secondary']}
+            onClick={handleClose}
+          >
             キャンセル
           </button>
-          <button className={styles['btn--primary']} onClick={handleSubmit}>
+          <button type="submit" className={styles['btn--primary']}>
             申請する
           </button>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };

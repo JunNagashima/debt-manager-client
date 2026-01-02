@@ -74,6 +74,12 @@
     color: $text-light;
   }
 
+  &__error {
+    margin-top: 4px;
+    font-size: 0.875rem;
+    color: #ef4444;
+  }
+
   &__footer {
     display: flex;
     gap: $spacing-sm;
