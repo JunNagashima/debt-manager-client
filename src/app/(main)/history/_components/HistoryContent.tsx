@@ -6,10 +6,7 @@ import { FilterChips } from './FilterChips';
 import { HistoryList } from './HistoryList';
 import { SearchModal } from './modals/SearchModal';
 import { FilterModal } from './modals/FilterModal';
-import { AdvanceDetailModal } from './modals/AdvanceDetailModal';
-import { RepaymentDetailModal } from './modals/RepaymentDetailModal';
-import { OffsetDetailModal } from './modals/OffsetDetailModal';
-import { RejectedDetailModal } from './modals/RejectedDetailModal';
+import { HistoryDetailModal } from './modals/HistoryDetailModal';
 import styles from './HistoryContent.module.scss';
 
 type FilterType = 'all' | 'advance' | 'repayment' | 'offset';
@@ -19,10 +16,7 @@ export const HistoryContent: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isAdvanceDetailOpen, setIsAdvanceDetailOpen] = useState(false);
-  const [isRepaymentDetailOpen, setIsRepaymentDetailOpen] = useState(false);
-  const [isOffsetDetailOpen, setIsOffsetDetailOpen] = useState(false);
-  const [isRejectedDetailOpen, setIsRejectedDetailOpen] = useState(false);
+  const [detailType, setDetailType] = useState<'advance' | 'repayment' | 'offset' | 'rejected' | null>(null);
 
   console.log('HistoryContent rendered:', { currentMonth, activeFilter });
 
@@ -50,13 +44,7 @@ export const HistoryContent: React.FC = () => {
   };
 
   const handleDetailOpen = (type: 'advance' | 'repayment' | 'offset') => {
-    if (type === 'advance') {
-      setIsAdvanceDetailOpen(true);
-    } else if (type === 'repayment') {
-      setIsRepaymentDetailOpen(true);
-    } else if (type === 'offset') {
-      setIsOffsetDetailOpen(true);
-    }
+    setDetailType(type);
   };
 
   return (
@@ -126,25 +114,13 @@ export const HistoryContent: React.FC = () => {
         onClose={() => setIsFilterOpen(false)}
       />
 
-      <AdvanceDetailModal
-        isOpen={isAdvanceDetailOpen}
-        onClose={() => setIsAdvanceDetailOpen(false)}
-      />
-
-      <RepaymentDetailModal
-        isOpen={isRepaymentDetailOpen}
-        onClose={() => setIsRepaymentDetailOpen(false)}
-      />
-
-      <OffsetDetailModal
-        isOpen={isOffsetDetailOpen}
-        onClose={() => setIsOffsetDetailOpen(false)}
-      />
-
-      <RejectedDetailModal
-        isOpen={isRejectedDetailOpen}
-        onClose={() => setIsRejectedDetailOpen(false)}
-      />
+      {detailType && (
+        <HistoryDetailModal
+          isOpen={true}
+          onClose={() => setDetailType(null)}
+          type={detailType}
+        />
+      )}
     </>
   );
 };

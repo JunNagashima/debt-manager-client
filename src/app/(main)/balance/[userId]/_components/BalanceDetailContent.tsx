@@ -7,9 +7,9 @@ import { DetailActions } from './DetailActions';
 import { BreakdownCard } from './BreakdownCard';
 import { Timeline } from './Timeline';
 import { MenuModal } from './modals/MenuModal';
-import { AdvanceModal } from './modals/AdvanceModal';
-import { RepaymentModal } from './modals/RepaymentModal';
-import { OffsetModal } from './modals/OffsetModal';
+import { AdvanceFormModal } from '@/app/(main)/_components/modals/AdvanceFormModal';
+import { RepaymentFormModal } from '@/app/(main)/_components/modals/RepaymentFormModal';
+import { OffsetFormModal } from '@/app/(main)/_components/modals/OffsetFormModal';
 import { TransactionDetailModal } from './modals/TransactionDetailModal';
 import styles from './BalanceDetailContent.module.scss';
 
@@ -124,19 +124,22 @@ export const BalanceDetailContent: React.FC<BalanceDetailContentProps> = ({
         }}
       />
 
-      <AdvanceModal
+      <AdvanceFormModal
         isOpen={isAdvanceOpen}
         onClose={() => setIsAdvanceOpen(false)}
+        friend={{ id: '1', name: '佐藤 花子', avatar: '佐' }}
       />
 
-      <RepaymentModal
+      <RepaymentFormModal
         isOpen={isRepaymentOpen}
         onClose={() => setIsRepaymentOpen(false)}
+        friend={{ id: '1', name: '佐藤 花子', avatar: '佐', balance: '現在 ¥6,000 貸し' }}
       />
 
-      <OffsetModal
+      <OffsetFormModal
         isOpen={isOffsetOpen}
         onClose={() => setIsOffsetOpen(false)}
+        friend={{ id: '1', name: '佐藤 花子', avatar: '佐' }}
       />
 
       <TransactionDetailModal

@@ -5,25 +5,123 @@ import { Tabs } from './Tabs';
 import { FilterChips } from './FilterChips';
 import { ReceivedTab } from './ReceivedTab';
 import { SentTab } from './SentTab';
-import { CreateAdvanceModal } from './modals/CreateAdvanceModal';
-import { ApproveAdvanceModal } from './modals/ApproveAdvanceModal';
-import { ApprovedDetailModal } from './modals/ApprovedDetailModal';
-import { RejectedDetailModal } from './modals/RejectedDetailModal';
-import { SentPendingDetailModal } from './modals/SentPendingDetailModal';
+import { AdvanceFormModal } from '@/app/(main)/_components/modals/AdvanceFormModal';
+import { AdvanceDetailModal } from './modals/AdvanceDetailModal';
 import { FAB } from './FAB';
 import styles from './AdvanceListContent.module.scss';
 
 type TabType = 'received' | 'sent';
 type FilterType = 'all' | 'pending' | 'approved' | 'rejected';
 
+// モーダル用のデータ型
+interface DetailModalState {
+  isOpen: boolean;
+  status: 'pending' | 'approved' | 'rejected';
+  direction: 'sent' | 'received';
+  data: {
+    amount: number;
+    counterpartyName: string;
+    applicationDate: string;
+    approvedDate?: string;
+    rejectedDate?: string;
+    memo?: string;
+  };
+}
+
 export const AdvanceListContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('received');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const [isApproveOpen, setIsApproveOpen] = useState(false);
-  const [isApprovedDetailOpen, setIsApprovedDetailOpen] = useState(false);
-  const [isRejectedDetailOpen, setIsRejectedDetailOpen] = useState(false);
-  const [isSentPendingDetailOpen, setIsSentPendingDetailOpen] = useState(false);
+  const [detailModal, setDetailModal] = useState<DetailModalState>({
+    isOpen: false,
+    status: 'pending',
+    direction: 'received',
+    data: {
+      amount: 0,
+      counterpartyName: '',
+      applicationDate: '',
+    },
+  });
+
+  const openDetailModal = (
+    status: 'pending' | 'approved' | 'rejected',
+    direction: 'sent' | 'received',
+    data: DetailModalState['data']
+  ) => {
+    setDetailModal({
+      isOpen: true,
+      status,
+      direction,
+      data,
+    });
+  };
+
+  const closeDetailModal = () => {
+    setDetailModal(prev => ({ ...prev, isOpen: false }));
+  };
+
+  const handleApprove = () => {
+    console.log('立替申請承認');
+    closeDetailModal();
+  };
+
+  const handleReject = () => {
+    console.log('立替申請却下');
+    closeDetailModal();
+  };
+
+  const handleCancel = () => {
+    console.log('申請取消');
+  };
+
+  // 仮データ（実際はリストアイテムからクリック時に渡される）
+  const handleReceivedPendingClick = () => {
+    openDetailModal('pending', 'received', {
+      amount: 3000,
+      counterpartyName: '佐藤 花子',
+      applicationDate: '2025/12/19',
+      memo: 'ランチ代',
+    });
+  };
+
+  const handleReceivedApprovedClick = () => {
+    openDetailModal('approved', 'received', {
+      amount: 2500,
+      counterpartyName: '鈴木 一郎',
+      applicationDate: '2025/12/15',
+      approvedDate: '2025/12/15',
+      memo: '飲み物代',
+    });
+  };
+
+  const handleReceivedRejectedClick = () => {
+    openDetailModal('rejected', 'received', {
+      amount: 1000,
+      counterpartyName: '高橋 健太',
+      applicationDate: '2025/12/05',
+      rejectedDate: '2025/12/06',
+      memo: '交通費',
+    });
+  };
+
+  const handleSentPendingClick = () => {
+    openDetailModal('pending', 'sent', {
+      amount: 2000,
+      counterpartyName: '鈴木 一郎',
+      applicationDate: '2025/12/20',
+      memo: 'タクシー代',
+    });
+  };
+
+  const handleSentApprovedClick = () => {
+    openDetailModal('approved', 'sent', {
+      amount: 1500,
+      counterpartyName: '田中 太郎',
+      applicationDate: '2025/12/18',
+      approvedDate: '2025/12/18',
+      memo: 'お菓子代',
+    });
+  };
 
   console.log('AdvanceListContent rendered:', { activeTab, activeFilter });
 
@@ -60,15 +158,15 @@ export const AdvanceListContent: React.FC = () => {
         {activeTab === 'received' ? (
           <ReceivedTab
             filter={activeFilter}
-            onApproveClick={() => setIsApproveOpen(true)}
-            onApprovedClick={() => setIsApprovedDetailOpen(true)}
-            onRejectedClick={() => setIsRejectedDetailOpen(true)}
+            onApproveClick={handleReceivedPendingClick}
+            onApprovedClick={handleReceivedApprovedClick}
+            onRejectedClick={handleReceivedRejectedClick}
           />
         ) : (
           <SentTab
             filter={activeFilter}
-            onPendingClick={() => setIsSentPendingDetailOpen(true)}
-            onApprovedClick={() => setIsApprovedDetailOpen(true)}
+            onPendingClick={handleSentPendingClick}
+            onApprovedClick={handleSentApprovedClick}
           />
         )}
       </div>
@@ -77,29 +175,20 @@ export const AdvanceListContent: React.FC = () => {
       <FAB onClick={() => setIsCreateOpen(true)} />
 
       {/* モーダル群 */}
-      <CreateAdvanceModal
+      <AdvanceFormModal
         isOpen={isCreateOpen}
         onClose={() => setIsCreateOpen(false)}
       />
 
-      <ApproveAdvanceModal
-        isOpen={isApproveOpen}
-        onClose={() => setIsApproveOpen(false)}
-      />
-
-      <ApprovedDetailModal
-        isOpen={isApprovedDetailOpen}
-        onClose={() => setIsApprovedDetailOpen(false)}
-      />
-
-      <RejectedDetailModal
-        isOpen={isRejectedDetailOpen}
-        onClose={() => setIsRejectedDetailOpen(false)}
-      />
-
-      <SentPendingDetailModal
-        isOpen={isSentPendingDetailOpen}
-        onClose={() => setIsSentPendingDetailOpen(false)}
+      <AdvanceDetailModal
+        isOpen={detailModal.isOpen}
+        onClose={closeDetailModal}
+        status={detailModal.status}
+        direction={detailModal.direction}
+        data={detailModal.data}
+        onApprove={handleApprove}
+        onReject={handleReject}
+        onCancel={handleCancel}
       />
     </>
   );

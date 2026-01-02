@@ -2,23 +2,35 @@
 
 import React, { useState } from 'react';
 import { Modal } from '@/components/ui/Modal';
-import styles from './BalanceActionModal.module.scss';
+import styles from './AdvanceFormModal.module.scss';
 
-interface AdvanceModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface Friend {
+  id: string;
+  name: string;
+  avatar: string;
 }
 
-export const AdvanceModal: React.FC<AdvanceModalProps> = ({
+interface AdvanceFormModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  friend?: Friend; // 指定された場合は固定表示、未指定の場合は選択式
+}
+
+export const AdvanceFormModal: React.FC<AdvanceFormModalProps> = ({
   isOpen,
   onClose,
+  friend,
 }) => {
+  const [friendId, setFriendId] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [note, setNote] = useState('');
 
   const handleSubmit = () => {
-    console.log('立替申請:', { amount, date, note });
+    const data = friend
+      ? { friendId: friend.id, amount, date, note }
+      : { friendId, amount, date, note };
+    console.log('立替申請:', data);
     onClose();
   };
 
@@ -26,11 +38,27 @@ export const AdvanceModal: React.FC<AdvanceModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose} title="立替を申請">
       <div className={styles.form}>
         <div className={styles.form__group}>
-          <label className={styles.form__label}>相手</label>
-          <div className={styles['form-static']}>
-            <div className={styles['form-static__avatar']}>佐</div>
-            <span className={styles['form-static__name']}>佐藤 花子</span>
-          </div>
+          <label className={styles.form__label}>
+            {friend ? '相手' : '誰に立て替えた？'}
+          </label>
+          {friend ? (
+            <div className={styles['form-static']}>
+              <div className={styles['form-static__avatar']}>{friend.avatar}</div>
+              <span className={styles['form-static__name']}>{friend.name}</span>
+            </div>
+          ) : (
+            <select
+              className={styles.form__select}
+              value={friendId}
+              onChange={(e) => setFriendId(e.target.value)}
+            >
+              <option value="">フレンドを選択</option>
+              <option value="1">佐藤 花子</option>
+              <option value="2">鈴木 一郎</option>
+              <option value="3">田中 美咲</option>
+              <option value="4">高橋 健太</option>
+            </select>
+          )}
         </div>
 
         <div className={styles.form__group}>

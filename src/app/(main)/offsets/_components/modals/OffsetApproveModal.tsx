@@ -4,12 +4,12 @@ import React from 'react';
 import { Modal } from '@/components/ui/Modal';
 import styles from './ApproveOffsetModal.module.scss';
 
-interface ApproveOffsetModalProps {
+interface OffsetApproveModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const ApproveOffsetModal: React.FC<ApproveOffsetModalProps> = ({
+export const OffsetApproveModal: React.FC<OffsetApproveModalProps> = ({
   isOpen,
   onClose,
 }) => {

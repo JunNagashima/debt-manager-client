@@ -7,7 +7,7 @@ import { MonthFilter } from './MonthFilter';
 import { ReceivedTab } from './ReceivedTab';
 import { PaidTab } from './PaidTab';
 import { MonthTotal } from './MonthTotal';
-import { CreateRepaymentModal } from './modals/CreateRepaymentModal';
+import { RepaymentFormModal } from '@/app/(main)/_components/modals/RepaymentFormModal';
 import { RepaymentDetailModal } from './modals/RepaymentDetailModal';
 import { FAB } from './FAB';
 import styles from './RepaymentListContent.module.scss';
@@ -95,7 +95,7 @@ export const RepaymentListContent: React.FC = () => {
       <FAB onClick={() => setIsCreateOpen(true)} />
 
       {/* モーダル群 */}
-      <CreateRepaymentModal
+      <RepaymentFormModal
         isOpen={isCreateOpen}
         onClose={() => setIsCreateOpen(false)}
       />

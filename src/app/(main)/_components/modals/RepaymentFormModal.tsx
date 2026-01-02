@@ -2,16 +2,25 @@
 
 import React, { useState } from 'react';
 import { Modal } from '@/components/ui/Modal';
-import styles from './AdvanceModal.module.scss';
+import styles from './RepaymentFormModal.module.scss';
 
-interface CreateAdvanceModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface Friend {
+  id: string;
+  name: string;
+  avatar: string;
+  balance?: string;
 }
 
-export const CreateAdvanceModal: React.FC<CreateAdvanceModalProps> = ({
+interface RepaymentFormModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  friend?: Friend; // 指定された場合は固定表示、未指定の場合は選択式
+}
+
+export const RepaymentFormModal: React.FC<RepaymentFormModalProps> = ({
   isOpen,
   onClose,
+  friend,
 }) => {
   const [friendId, setFriendId] = useState('');
   const [amount, setAmount] = useState('');
@@ -19,26 +28,45 @@ export const CreateAdvanceModal: React.FC<CreateAdvanceModalProps> = ({
   const [note, setNote] = useState('');
 
   const handleSubmit = () => {
-    console.log('立替申請作成:', { friendId, amount, date, note });
+    const data = friend
+      ? { friendId: friend.id, amount, date, note }
+      : { friendId, amount, date, note };
+    console.log('返済記録:', data);
     onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="立替を申請">
+    <Modal isOpen={isOpen} onClose={onClose} title="返済を記録">
       <div className={styles.form}>
         <div className={styles.form__group}>
-          <label className={styles.form__label}>誰に立て替えた？</label>
-          <select
-            className={styles.form__select}
-            value={friendId}
-            onChange={(e) => setFriendId(e.target.value)}
-          >
-            <option value="">フレンドを選択</option>
-            <option value="1">佐藤 花子</option>
-            <option value="2">鈴木 一郎</option>
-            <option value="3">田中 美咲</option>
-            <option value="4">高橋 健太</option>
-          </select>
+          <label className={styles.form__label}>
+            {friend ? '相手' : '誰から/誰に返済？'}
+          </label>
+          {friend ? (
+            <div className={styles['form-static']}>
+              <div className={styles['form-static__avatar']}>{friend.avatar}</div>
+              <div className={styles['form-static__info']}>
+                <span className={styles['form-static__name']}>{friend.name}</span>
+                {friend.balance && (
+                  <span className={styles['form-static__balance']}>
+                    {friend.balance}
+                  </span>
+                )}
+              </div>
+            </div>
+          ) : (
+            <select
+              className={styles.form__select}
+              value={friendId}
+              onChange={(e) => setFriendId(e.target.value)}
+            >
+              <option value="">フレンドを選択</option>
+              <option value="1">佐藤 花子</option>
+              <option value="2">鈴木 一郎</option>
+              <option value="3">田中 美咲</option>
+              <option value="4">高橋 健太</option>
+            </select>
+          )}
         </div>
 
         <div className={styles.form__group}>
@@ -54,6 +82,11 @@ export const CreateAdvanceModal: React.FC<CreateAdvanceModalProps> = ({
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
+          {friend && (
+            <p className={styles.form__hint}>
+              相手からあなたへの返済として記録されます
+            </p>
+          )}
         </div>
 
         <div className={styles.form__group}>
@@ -65,7 +98,6 @@ export const CreateAdvanceModal: React.FC<CreateAdvanceModalProps> = ({
             max={new Date().toISOString().split('T')[0]}
             onChange={(e) => setDate(e.target.value)}
           />
-          <p className={styles.form__hint}>未来の日付は選択できません</p>
         </div>
 
         <div className={styles.form__group}>
@@ -73,7 +105,7 @@ export const CreateAdvanceModal: React.FC<CreateAdvanceModalProps> = ({
           <input
             type="text"
             className={styles.form__input}
-            placeholder="例：ランチ代"
+            placeholder="例：ランチ代の返済"
             value={note}
             onChange={(e) => setNote(e.target.value)}
           />
@@ -84,7 +116,7 @@ export const CreateAdvanceModal: React.FC<CreateAdvanceModalProps> = ({
             キャンセル
           </button>
           <button className={styles['btn--primary']} onClick={handleSubmit}>
-            申請する
+            記録する
           </button>
         </div>
       </div>

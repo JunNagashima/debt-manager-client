@@ -6,9 +6,7 @@ import { FriendRequestsSection } from './FriendRequestsSection';
 import { PendingRequestsSection } from './PendingRequestsSection';
 import { FriendsListSection } from './FriendsListSection';
 import { AddFriendModal } from './modals/AddFriendModal';
-import { AcceptConfirmModal } from './modals/AcceptConfirmModal';
-import { RejectConfirmModal } from './modals/RejectConfirmModal';
-import { CancelRequestModal } from './modals/CancelRequestModal';
+import { FriendActionConfirmModal } from './modals/FriendActionConfirmModal';
 import { FriendMenuModal } from './modals/FriendMenuModal';
 import { RemoveFriendModal } from './modals/RemoveFriendModal';
 import styles from './FriendsContent.module.scss';
@@ -16,9 +14,7 @@ import styles from './FriendsContent.module.scss';
 export const FriendsContent: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddFriendOpen, setIsAddFriendOpen] = useState(false);
-  const [isAcceptConfirmOpen, setIsAcceptConfirmOpen] = useState(false);
-  const [isRejectConfirmOpen, setIsRejectConfirmOpen] = useState(false);
-  const [isCancelRequestOpen, setIsCancelRequestOpen] = useState(false);
+  const [actionConfirmType, setActionConfirmType] = useState<'accept' | 'reject' | 'cancel' | null>(null);
   const [isFriendMenuOpen, setIsFriendMenuOpen] = useState(false);
   const [isRemoveFriendOpen, setIsRemoveFriendOpen] = useState(false);
 
@@ -55,12 +51,12 @@ export const FriendsContent: React.FC = () => {
         <SearchBox value={searchQuery} onChange={setSearchQuery} />
 
         <FriendRequestsSection
-          onAcceptClick={() => setIsAcceptConfirmOpen(true)}
-          onRejectClick={() => setIsRejectConfirmOpen(true)}
+          onAcceptClick={() => setActionConfirmType('accept')}
+          onRejectClick={() => setActionConfirmType('reject')}
         />
 
         <PendingRequestsSection
-          onCancelClick={() => setIsCancelRequestOpen(true)}
+          onCancelClick={() => setActionConfirmType('cancel')}
         />
 
         <FriendsListSection
@@ -96,20 +92,13 @@ export const FriendsContent: React.FC = () => {
         onClose={() => setIsAddFriendOpen(false)}
       />
 
-      <AcceptConfirmModal
-        isOpen={isAcceptConfirmOpen}
-        onClose={() => setIsAcceptConfirmOpen(false)}
-      />
-
-      <RejectConfirmModal
-        isOpen={isRejectConfirmOpen}
-        onClose={() => setIsRejectConfirmOpen(false)}
-      />
-
-      <CancelRequestModal
-        isOpen={isCancelRequestOpen}
-        onClose={() => setIsCancelRequestOpen(false)}
-      />
+      {actionConfirmType && (
+        <FriendActionConfirmModal
+          isOpen={true}
+          onClose={() => setActionConfirmType(null)}
+          type={actionConfirmType}
+        />
+      )}
 
       <FriendMenuModal
         isOpen={isFriendMenuOpen}

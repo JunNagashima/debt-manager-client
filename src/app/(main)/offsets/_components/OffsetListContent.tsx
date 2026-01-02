@@ -7,11 +7,9 @@ import { Tabs } from './Tabs';
 import { ReceivedTab } from './ReceivedTab';
 import { SentTab } from './SentTab';
 import { HelpModal } from './modals/HelpModal';
-import { CreateOffsetModal } from './modals/CreateOffsetModal';
-import { ApproveOffsetModal } from './modals/ApproveOffsetModal';
-import { ApprovedDetailModal } from './modals/ApprovedDetailModal';
-import { RejectedDetailModal } from './modals/RejectedDetailModal';
-import { SentPendingDetailModal } from './modals/SentPendingDetailModal';
+import { OffsetFormModal } from '@/app/(main)/_components/modals/OffsetFormModal';
+import { OffsetApproveModal } from './modals/OffsetApproveModal';
+import { OffsetDetailModal } from './modals/OffsetDetailModal';
 import styles from './OffsetListContent.module.scss';
 
 type TabType = 'received' | 'sent';
@@ -21,9 +19,7 @@ export const OffsetListContent: React.FC = () => {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isApproveOpen, setIsApproveOpen] = useState(false);
-  const [isApprovedDetailOpen, setIsApprovedDetailOpen] = useState(false);
-  const [isRejectedDetailOpen, setIsRejectedDetailOpen] = useState(false);
-  const [isSentPendingDetailOpen, setIsSentPendingDetailOpen] = useState(false);
+  const [detailStatus, setDetailStatus] = useState<'approved' | 'rejected' | 'pending' | null>(null);
 
   console.log('OffsetListContent rendered:', { activeTab });
 
@@ -63,13 +59,13 @@ export const OffsetListContent: React.FC = () => {
         {activeTab === 'received' ? (
           <ReceivedTab
             onApproveClick={() => setIsApproveOpen(true)}
-            onApprovedClick={() => setIsApprovedDetailOpen(true)}
-            onRejectedClick={() => setIsRejectedDetailOpen(true)}
+            onApprovedClick={() => setDetailStatus('approved')}
+            onRejectedClick={() => setDetailStatus('rejected')}
           />
         ) : (
           <SentTab
-            onPendingClick={() => setIsSentPendingDetailOpen(true)}
-            onApprovedClick={() => setIsApprovedDetailOpen(true)}
+            onPendingClick={() => setDetailStatus('pending')}
+            onApprovedClick={() => setDetailStatus('approved')}
           />
         )}
       </div>
@@ -77,30 +73,23 @@ export const OffsetListContent: React.FC = () => {
       {/* モーダル群 */}
       <HelpModal isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
 
-      <CreateOffsetModal
+      <OffsetFormModal
         isOpen={isCreateOpen}
         onClose={() => setIsCreateOpen(false)}
       />
 
-      <ApproveOffsetModal
+      <OffsetApproveModal
         isOpen={isApproveOpen}
         onClose={() => setIsApproveOpen(false)}
       />
 
-      <ApprovedDetailModal
-        isOpen={isApprovedDetailOpen}
-        onClose={() => setIsApprovedDetailOpen(false)}
-      />
-
-      <RejectedDetailModal
-        isOpen={isRejectedDetailOpen}
-        onClose={() => setIsRejectedDetailOpen(false)}
-      />
-
-      <SentPendingDetailModal
-        isOpen={isSentPendingDetailOpen}
-        onClose={() => setIsSentPendingDetailOpen(false)}
-      />
+      {detailStatus && (
+        <OffsetDetailModal
+          isOpen={true}
+          onClose={() => setDetailStatus(null)}
+          status={detailStatus}
+        />
+      )}
     </>
   );
 };
