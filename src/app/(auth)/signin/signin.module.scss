@@ -1,0 +1,170 @@
+@import '../../../styles/variables.scss';
+
+/* 認証カード（透明版） */
+.authCard {
+  width: 100%;
+  max-width: 400px;
+  background: transparent;
+  border-radius: 0;
+  padding: $spacing-lg 0;
+  box-shadow: none;
+}
+
+.authCardTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: $text-primary;
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+/* 認証フォーム */
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+/* フォームグループ */
+.formGroup {
+  margin-bottom: 0;
+}
+
+.formLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.formInput {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 15px;
+  color: $text-primary;
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  transition: all 0.2s;
+
+  &:focus {
+    border-color: $color-primary;
+    background: $bg-card;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+/* 認証用インプット（背景に馴染む） */
+.formInputAuth {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(139, 115, 85, 0.2);
+  backdrop-filter: blur(4px);
+
+  &:focus {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: $color-primary;
+  }
+}
+
+/* フォームオプション */
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.checkboxInline {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $text-secondary;
+  cursor: pointer;
+
+  input {
+    width: 16px;
+    height: 16px;
+    accent-color: $color-primary;
+    cursor: pointer;
+  }
+}
+
+.formLink {
+  color: $color-primary;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ボタン */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: $border-radius-md;
+  transition: all 0.2s;
+  min-height: 48px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: $text-inverse;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.btnFull {
+  width: 100%;
+}
+
+.btnLg {
+  padding: $spacing-md $spacing-lg;
+  font-size: 16px;
+}
+
+/* 認証切り替え */
+.authSwitch {
+  text-align: center;
+  font-size: 14px;
+  color: $text-secondary;
+  margin-top: $spacing-xl;
+
+  a {
+    color: $color-primary;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* タブレット・デスクトップ対応 */
+@media (min-width: $breakpoint-tablet) {
+  .authCard {
+    padding: $spacing-xl $spacing-lg;
+  }
+}

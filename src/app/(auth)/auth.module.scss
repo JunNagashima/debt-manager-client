@@ -1,0 +1,82 @@
+@import '../../styles/variables.scss';
+
+/* 認証画面レイアウト */
+.appAuth {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(180deg, $color-primary-pale 0%, $bg-secondary 100%);
+  padding: 0;
+}
+
+/* 認証ヘッダー */
+.authHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-xl $spacing-md;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.authLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.authLogoTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: $color-primary-dark;
+  letter-spacing: 2px;
+}
+
+.authLogoTagline {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-top: $spacing-sm;
+}
+
+/* 認証メイン */
+.authMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 $spacing-md $spacing-lg;
+}
+
+/* 認証フッター */
+.authFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  font-size: 12px;
+  color: $text-muted;
+
+  a {
+    color: $text-muted;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-primary;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* タブレット・デスクトップ対応 */
+@media (min-width: $breakpoint-tablet) {
+  .authHeader {
+    padding-top: 80px;
+  }
+
+  .authLogoTitle {
+    font-size: 32px;
+  }
+}
