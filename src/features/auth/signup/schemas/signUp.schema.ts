@@ -23,3 +23,5 @@ export const signUpSchema = z.object({
   message: 'パスワードが一致しません',
   path: ['passwordConfirm'],
 });
+
+export type SignUpFormData = z.infer<typeof signUpSchema>;

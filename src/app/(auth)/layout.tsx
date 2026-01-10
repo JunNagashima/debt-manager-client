@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './auth.module.scss';
+import '@/styles/globals.scss';
 
 export default function AuthLayout({
   children,

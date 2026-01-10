@@ -204,6 +204,12 @@
   }
 }
 
+.errorMessage {
+  color: $color-danger;
+  font-size: $font-size-sm;
+  margin-top: 0.25rem;
+}
+
 /* タブレット・デスクトップ対応 */
 @media (min-width: $breakpoint-tablet) {
   .authCard {

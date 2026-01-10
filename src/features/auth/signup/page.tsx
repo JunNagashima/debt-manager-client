@@ -34,7 +34,7 @@ export default function SignUpPage() {
               {...register('name')}
             />
             {errors.name && (
-              <p className={styles.formError}>{errors.name.message}</p>
+              <p className={styles.errorMessage}>{errors.name.message}</p>
             )}
           </div>
 
@@ -51,9 +51,9 @@ export default function SignUpPage() {
             </div>
             <p className={styles.formHint}>半角英数字とアンダースコアのみ（後から変更可能）</p>
             {errors.userId && (
-              <p className={styles.formError}>{errors.userId.message}</p>
+              <p className={styles.errorMessage}>{errors.userId.message}</p>
             )}
-            {userIdExistsError && <p className={styles.formError}>ユーザーIDは既に使用されています</p>}
+            {userIdExistsError && <p className={styles.errorMessage}>ユーザーIDは既に使用されています</p>}
           </div>
 
           <div className={styles.formGroup}>
@@ -65,9 +65,9 @@ export default function SignUpPage() {
               {...register('email')}
             />
             {errors.email && (
-              <p className={styles.formError}>{errors.email.message}</p>
+              <p className={styles.errorMessage}>{errors.email.message}</p>
             )}
-            {emailExistsError && <p className={styles.formError}>メールアドレスは既に登録されています</p>}
+            {emailExistsError && <p className={styles.errorMessage}>メールアドレスは既に登録されています</p>}
           </div>
 
           <div className={styles.formGroup}>
@@ -77,7 +77,7 @@ export default function SignUpPage() {
               placeholder="8文字以上"
             />
             {errors.password && (
-              <p className={styles.formError}>{errors.password.message}</p>
+              <p className={styles.errorMessage}>{errors.password.message}</p>
             )}
           </div>
 
@@ -88,7 +88,7 @@ export default function SignUpPage() {
               placeholder="もう一度入力"
             />
             {errors.passwordConfirm && (
-              <p className={styles.formError}>{errors.passwordConfirm.message}</p>
+              <p className={styles.errorMessage}>{errors.passwordConfirm.message}</p>
             )}
           </div>
 
@@ -104,7 +104,7 @@ export default function SignUpPage() {
               </span>
             </label>
             {errors.agreedToTerms && (
-              <p className={styles.formError}>{errors.agreedToTerms.message}</p>
+              <p className={styles.errorMessage}>{errors.agreedToTerms.message}</p>
             )}
           </div>
 

@@ -5,24 +5,26 @@ import Link from 'next/link';
 import styles from './signin.module.scss';
 import PasswordInput from './components/PasswordInput';
 import ForgotPasswordModal from './components/ForgotPasswordModal';
+import { useSignInForm } from './hooks/useSignInForm';
 
 const SignInPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement sign in logic
-    console.log('Sign in:', { email, password, rememberMe });
-  };
+  const {
+    register,
+    handleSubmit,
+    errors,
+    hasError
+  } = useSignInForm();
 
   return (
     <>
       <div className={styles.authCard}>
         <h2 className={styles.authCardTitle}>ログイン</h2>
-
+        {hasError && (
+          <div className={styles.errorMessage}>
+            メールアドレスまたはパスワードが正しくありません。
+          </div>
+        )}
         <form className={styles.authForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label className={styles.formLabel}>メールアドレス</label>
@@ -30,30 +32,33 @@ const SignInPage = () => {
               type="email"
               className={`${styles.formInput} ${styles.formInputAuth}`}
               placeholder="example@mail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              {...register('email')}
             />
+            {errors.email && (
+              <span className={styles.errorMessage}>{errors.email.message}</span>
+            )}
           </div>
 
           <div className={styles.formGroup}>
             <label className={styles.formLabel}>パスワード</label>
             <PasswordInput
-              value={password}
-              onChange={setPassword}
+              {...register('password')}
               placeholder="パスワードを入力"
             />
+            {errors.password && (
+              <span className={styles.errorMessage}>{errors.password.message}</span>
+            )}
           </div>
 
           <div className={styles.formOptions}>
-            <label className={styles.checkboxInline}>
+            {/* TODO:今後実装予定 */}
+            {/* <label className={styles.checkboxInline}>
               <input
                 type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
+                {...register('rememberMe')}
               />
               <span>ログイン状態を保持</span>
-            </label>
+            </label> */}
             <button
               type="button"
               className={styles.formLink}

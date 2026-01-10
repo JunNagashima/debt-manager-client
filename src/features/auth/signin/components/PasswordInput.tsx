@@ -3,22 +3,28 @@
 import { useState, forwardRef } from 'react';
 import styles from './PasswordInput.module.scss';
 
-interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface PasswordInputProps {
   placeholder?: string;
+  name?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({ placeholder = 'パスワードを入力', ...props }, ref) => {
+  ({ placeholder = 'パスワードを入力', name, onChange, onBlur, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
       <div className={styles.passwordInput}>
         <input
+          ref={ref}
+          name={name}
           type={showPassword ? 'text' : 'password'}
           className={styles.input}
           placeholder={placeholder}
+          onChange={onChange}
+          onBlur={onBlur}
           {...props}
-          ref={ref}
         />
         <button
           type="button"

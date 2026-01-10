@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { createClient } from '@/lib/supabase/client';
-import { signUpSchema } from '../schemas/signUp.schema';
+import { signUpSchema,SignUpFormData } from '../schemas/signUp.schema';
 
-type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export const useSignUpForm = () => {
   const [showVerifyModal, setShowVerifyModal] = useState(false);

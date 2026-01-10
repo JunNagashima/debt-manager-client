@@ -74,7 +74,7 @@
 /* フォームオプション */
 .formOptions {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
   font-size: 13px;
 }
@@ -160,6 +160,12 @@
       text-decoration: underline;
     }
   }
+}
+
+.errorMessage {
+  color: $color-danger;
+  font-size: $font-size-sm;
+  margin-top: 0.25rem;
 }
 
 /* タブレット・デスクトップ対応 */
