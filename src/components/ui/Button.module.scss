@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .button {
   display: inline-flex;
@@ -11,7 +11,7 @@
   cursor: pointer;
   transition: all $transition-fast;
   font-family: inherit;
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;

@@ -1,4 +1,4 @@
-@import '../../../../styles/variables';
+@use "../../../../styles/variables" as *;
 
 .section {
   margin-bottom: $spacing-lg;
@@ -58,11 +58,7 @@
   width: 44px;
   height: 44px;
   border-radius: $border-radius-full;
-  background: linear-gradient(
-    135deg,
-    $color-secondary-light,
-    $color-secondary
-  );
+  background: linear-gradient(135deg, $color-secondary-light, $color-secondary);
   color: $text-inverse;
   display: flex;
   align-items: center;

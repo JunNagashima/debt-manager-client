@@ -1,4 +1,4 @@
-@import '../../../../../styles/variables';
+@use "../../../../../styles/variables" as *;
 
 .timeline {
   margin-bottom: $spacing-md;
@@ -21,7 +21,7 @@
   padding-left: 20px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 5px;
     top: 8px;

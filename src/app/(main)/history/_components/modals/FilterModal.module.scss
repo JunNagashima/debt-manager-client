@@ -1,4 +1,4 @@
-@import '../../../../../styles/variables';
+@use "../../../../../styles/variables" as *;
 
 .modal {
   // スタイル不要（Modalコンポーネント内で管理）
@@ -31,7 +31,7 @@
   border-radius: $border-radius-md;
   cursor: pointer;
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     width: 20px;
     height: 20px;
     cursor: pointer;

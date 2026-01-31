@@ -1,4 +1,4 @@
-@import '../../../../styles/variables';
+@use "../../../../styles/variables" as *;
 
 .toggle-switch {
   position: relative;
@@ -34,7 +34,7 @@
 
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     height: 22px;
     width: 22px;
     left: 3px;

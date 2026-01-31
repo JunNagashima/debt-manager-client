@@ -1,4 +1,4 @@
-@import '../../../../styles/variables';
+@use "../../../../styles/variables" as *;
 
 .request-card {
   background: $bg-card;
