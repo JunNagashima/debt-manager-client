@@ -26,6 +26,7 @@ export const fetcher = async <T>({
   if (auth) {
     const supabase = await createClient();
     const { data: { session } } = await supabase.auth.getSession();
+
     if (session?.access_token) {
       defaultHeaders['Authorization'] = `Bearer ${session.access_token}`;
     }

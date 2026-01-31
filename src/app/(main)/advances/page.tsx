@@ -1,15 +1,21 @@
 import { AdvanceListContent } from '@/features/main/advances/_components/AdvanceListContent';
+import { findUserId } from '@/lib/fetcher/main/accounts';
+import { selectFriends } from '@/lib/fetcher/main/friends';
 
-export default function AdvanceListPage() {
-  console.log('AdvanceListPage: Server Component rendered');
+export default async function AdvanceListPage() {
+  const currentUserId = await findUserId();
 
-  // ダミーデータ取得（実際はAPIやDBから取得）
-  const friendOptions = [
-    { value: '1', text: '長島 潤' },
-    { value: '2', text: '鈴木 一郎' },
-    { value: '3', text: '田中 美咲' },
-    { value: 'user_c', text: '高橋 健太' },
-  ];
+  const friends = await selectFriends();
 
-  return <AdvanceListContent friendOptions={friendOptions} />;
+  const friendOptions = friends?.map((friend) => {
+    const isUserLow = friend.userLow === currentUserId;
+    return {
+      value: isUserLow ? friend.userHigh : friend.userLow,
+      text: isUserLow ? friend.userHighAccount.name : friend.userLowAccount.name,
+    };
+  });
+
+  console.log({ friends });
+
+  return <AdvanceListContent friendOptions={friendOptions ?? []} />;
 }

@@ -9,11 +9,13 @@ export const POST = async (req: Request) => {
 
     await createAdvance(input);
 
-    return new Response(null, { status: 200 });
+    return Response.json({ success: true }, { status: 200 });
   } catch (error) {
     if (error instanceof ZodError) {
-      return new Response(null, { status: 400 });
+      console.error('Validation error:', error);
+      return Response.json({ error: 'Validation Error' }, { status: 400 });
     }
-    return new Response(null, { status: 500 });
+    console.error('POST /api/main/advances error:', error);
+    return Response.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
