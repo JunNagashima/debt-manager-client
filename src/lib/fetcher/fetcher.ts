@@ -1,9 +1,11 @@
+import { createClient } from '@/lib/supabase/server';
+
 interface FetcherOptions {
   url: string;
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: unknown;
   headers?: Record<string, string>;
-  auth?: string; // Bearer token
+  auth?: boolean; // 認証が必要かどうかのフラグ
 }
 
 const API_URL = process.env.API_URL;
@@ -22,7 +24,11 @@ export const fetcher = async <T>({
   };
 
   if (auth) {
-    defaultHeaders['Authorization'] = `Bearer ${auth}`;
+    const supabase = await createClient();
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.access_token) {
+      defaultHeaders['Authorization'] = `Bearer ${session.access_token}`;
+    }
   }
 
   const config: RequestInit = {

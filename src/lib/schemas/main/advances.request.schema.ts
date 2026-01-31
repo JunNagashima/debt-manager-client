@@ -1,13 +1,16 @@
 import { z } from 'zod';
 
-export const advanceFormSchema = z.object({
+export const createAdvanceRequestSchema = z.object({
   friendId: z.string().min(1, 'フレンドを選択してください'),
   amount: z
     .string()
     .min(1, '金額を入力してください')
-    .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-      message: '1円以上の金額を入力してください',
-    }),
+    .transform((val) => Number(val))
+    .pipe(
+      z.number()
+        .positive('1円以上の金額を入力してください')
+        .int('金額は整数で入力してください')
+    ),
   date: z
     .string()
     .min(1, '日付を選択してください')
@@ -26,4 +29,4 @@ export const advanceFormSchema = z.object({
   note: z.string().optional(),
 });
 
-export type AdvanceFormData = z.infer<typeof advanceFormSchema>;
+export type CreateAdvanceRequest = z.infer<typeof createAdvanceRequestSchema>;

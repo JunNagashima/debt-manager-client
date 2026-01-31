@@ -46,8 +46,15 @@ export const AdvanceFormModal: React.FC<AdvanceFormModalProps> = ({
     },
   });
 
-  const onSubmit = (data: AdvanceFormData) => {
+  const onSubmit = async (data: AdvanceFormData) => {
     console.log('立替申請:', data);
+    await fetch('/api/main/advances', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
     reset();
     onClose();
   };

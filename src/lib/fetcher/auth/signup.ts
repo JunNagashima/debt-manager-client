@@ -9,6 +9,5 @@ export const checkUserId = async (userId: string, auth?: string) => {
     url: 'accounts/check-user-id',
     method: 'POST',
     body: { userId },
-    auth,
   });
 }
