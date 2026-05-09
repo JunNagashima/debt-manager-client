@@ -1,0 +1,11 @@
+{
+	"name": "ai-web-application",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+	"workspaceFolder": "/workspace",
+	"remoteUser": "root",
+	"postCreateCommand": "bash .devcontainer/setup-aliases.sh && bash .devcontainer/setup-claude.sh"
+}
