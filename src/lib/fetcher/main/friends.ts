@@ -9,9 +9,9 @@ interface FriendWithAccount extends Friend {
   userHighAccount: Account
 }
 export const selectFriends = async (): Promise<FriendWithAccount[]> => {
-  return await fetcher({
-    url: 'friends',
-    method: 'GET',
-    auth: true,
-  });
+  // return await fetcher({
+  //   url: 'friends',
+  //   method: 'GET',
+  //   auth: true,
+  // });
 }
